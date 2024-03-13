@@ -1,0 +1,198 @@
+@import "variables";
+@import "mixin";
+
+// 전역 CSS 설정
+
+@include font-face("Light", 100);
+@include font-face("Regular", 400);
+@include font-face("Medium", 500);
+@include font-face("Bold", 700);
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+menu,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section {
+  display: block;
+}
+/* HTML5 hidden-attribute fix for newer browsers */
+*[hidden] {
+  display: none;
+}
+menu,
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input:-webkit-autofill {
+  &,
+  &:hover,
+  &:focus,
+  &:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100vh;
+}
+html {
+  font-size: 62.5%; // 10px
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -o-tab-size: 4;
+  tab-size: 4;
+}
+@media all and (max-width: 750px) {
+  html {
+    // 이제 문서 내 모든 rem 단위가 영향을 받습니다.
+    font-size: 50%;
+  }
+}
+body {
+  font-family: var(--font-name), -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕",
+    나눔고딕, "Nanum Gothic", "Noto Sans KR", "Noto Sans CJK KR", arial, "돋움",
+    Dotum, Tahoma, Geneva, sans-serif;
+  box-sizing: border-box;
+  font-size: var(--basic-size);
+  line-height: 1;
+  margin: 0px;
+  padding: 0px;
+  color: black;
+  /* 안티알리아싱 적용 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 드래그 방지 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* 스크롤 방지 */
+  position: fixed;
+  overflow: hidden;
+  touch-action: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

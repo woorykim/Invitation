@@ -15,7 +15,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "typeRoots": ["./node_modules/@types", "types"]
+    "incremental": true,
+    "typeRoots": ["./node_modules/@types", "types", "src/types"]
   },
   "include": ["src"]
 }

@@ -30,12 +30,15 @@ const Header = styled.header<{ $scroll: number }>`
 `;
 
 /**
- * @title HeadBar Component type
+ * @title HeadBar Component Type
  */
 interface IHeadBarProps {
   scroll: number;
 }
 
+/**
+  @title HeadBar Components
+*/
 export const HeadBar: React.FC<IHeadBarProps> = (props) => {
   const { scroll } = props;
 

@@ -152,7 +152,7 @@ input:-webkit-autofill {
 }
 
 html {
-  font-size: var(--basic-size);
+  font-size: var(--basic-size); // 10px
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   -o-tab-size: 4;
@@ -160,19 +160,29 @@ html {
   width: 100vw;
   height: 100vh;
 }
-@media all and (max-width: 750px) {
-  html {
-    // 이제 문서 내 모든 rem 단위가 영향을 받습니다.
-    font-size: 50%;
-  }
-}
+
+// @media all and (max-width: 750px) {
+//   html {
+//     // 이제 문서 내 모든 rem 단위가 영향을 받습니다.
+//     font-size: 50%;
+//   }
+// }
+
 body {
   width: 100%;
-  height: 100%;
-  font-family: var(--font-name), -apple-system, BlinkMacSystemFont,
-    "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕",
-    나눔고딕, "Nanum Gothic", "Noto Sans KR", "Noto Sans CJK KR", arial, "돋움",
-    Dotum, Tahoma, Geneva, sans-serif;
+  /* 안드로이드 폰트 설정 */
+  font-family: var(--font-name), -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
+    "Apple SD Gothic Neo", sans-serif, "Malgun Gothic", "맑은 고딕", 나눔고딕,
+    "Nanum Gothic", "Noto Sans KR", "Noto Sans CJK KR", arial, "돋움", Dotum,
+    Tahoma, Geneva;
+
+  /* iOS 폰트 설정 */
+  @media all and (-webkit-min-device-pixel-ratio: 0) {
+    body {
+      font-family: "Apple SD Gothic Neo", "Arial", sans-serif;
+    }
+  }
   box-sizing: border-box;
   line-height: 1;
   margin: 0px;

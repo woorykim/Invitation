@@ -1,6 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+
+import { Modal } from "../util/Modal";
+
 import * as salutation from "../styled/salutation";
+import * as binoculars from "../styled/binoculars";
+import * as horizontal from "../styled/horizontal";
+
+// 절대경로 설정
+const imagePath = process.env.PUBLIC_URL + "/common/images/";
+const videoPath = process.env.PUBLIC_URL + "/common/videos/";
 
 /** * images type */
 interface ImageProps {
@@ -40,8 +49,12 @@ const Wrapper = styled.div`
 const Section = styled.section`
   width: 100%;
   height: auto;
+  opacity: 0;
+  margin-top: 40px;
+  transition: opacity 0.5s ease, margin-top 0.4s ease;
 `;
 
+// section 02
 const ImagesArea = styled.div<{ width: number }>`
   // Mobile
   width: 100%;
@@ -127,28 +140,76 @@ const images: ImageProps = {
 */
 export const Body = () => {
   const [width, setWidth] = useState(window.innerWidth);
-  const imagePath = process.env.PUBLIC_URL + "/common/images/";
-  const videoPath = process.env.PUBLIC_URL + "/common/videos/";
+  const [isOpen, setIsOpen] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false); // 회전 상태
+  const sectionRefs = useRef<Array<HTMLElement | null>>([
+    null,
+    null,
+    null,
+    null,
+  ]); // 4개의 섹션을 참조하기 위한 배열
 
+  // Event handlers
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+  const toggleFlip = () => {
+    setIsFlipped(!isFlipped); // 상태 토글
+  };
+
+  // 좌우 여백 10px씩 제외한 값으로 설정
   useEffect(() => {
     const handleResize = () => {
-      setWidth(window.innerWidth - 20); // 좌우 여백 10px씩 제외한 값으로 설정
+      setWidth(window.innerWidth - 20);
     };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // 브라우저 Viewport 설정한 요소의 교차점을 관찰
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const targetElement = entry.target as HTMLElement; // HTMLElement로 형변환
+
+          // 세 번째 섹션이 viewport에 들어왔을 때 모달 열기
+          if (entry.isIntersecting && entry.target === sectionRefs.current[2]) {
+            openModal();
+          }
+
+          // viewport에 들어온 섹션 style 처리
+          if (entry.isIntersecting) {
+            targetElement.style.opacity = "1";
+            targetElement.style.marginTop = "0px";
+          } else {
+            // viewport에 벗어난 섹션 style 처리
+            targetElement.style.opacity = "0";
+            targetElement.style.marginTop = "40px";
+          }
+        });
+      },
+      // 섹션이 60% 이상 들어올 때 콜백 실행
+      { threshold: 0.6 }
+    );
+
+    // 모든 섹션에 대해 observer 설정
+    sectionRefs.current.forEach((ref) => {
+      if (ref) {
+        observer.observe(ref);
+      }
+    });
+
+    return () => {
+      // 컴포넌트가 언마운트될 때 observer 해제
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <Wrapper>
-      <Section>
-        <h1>section01</h1>
-        <video muted autoPlay loop>
-          <source src={videoPath + "sound.mp4"} type="video/mp4" />
-        </video>
-      </Section>
-
-      <Section>
+      {/* 포스터  */}
+      <Section ref={(ref) => (sectionRefs.current[0] = ref)}>
         <salutation.SolutionArea>
           <salutation.Img src={imagePath + "together.png"} alt="우리와 은사" />
 
@@ -171,8 +232,79 @@ export const Body = () => {
           </salutation.Content>
         </salutation.SolutionArea>
       </Section>
-      <Section>
-        <h1>section03</h1>
+
+      {/* 비디오 */}
+      <Section ref={(ref) => (sectionRefs.current[1] = ref)}>
+        <binoculars.VideoArea>
+          <binoculars.MovieTopBottom>
+            <binoculars.BinocularsArea
+              style={{
+                backgroundImage: `url(${imagePath + "binoculars.png"})`,
+              }}
+            />
+            <binoculars.Video muted autoPlay loop>
+              <source src={videoPath + "sound.mp4"} type="video/mp4" />
+            </binoculars.Video>
+          </binoculars.MovieTopBottom>
+        </binoculars.VideoArea>
+      </Section>
+
+      {/* 가로 스크롤  */}
+      <Section ref={(ref) => (sectionRefs.current[2] = ref)}>
+        {/* Modal */}
+        <Modal isOpen={isOpen} onClose={closeModal}></Modal>
+
+        <horizontal.HorizontalArea>
+          {/* 에어드롭 & 인물소개 */}
+          <horizontal.article>
+            <horizontal.FlipCardArea onClick={toggleFlip}>
+              <horizontal.FlipCardInner
+                style={{
+                  backgroundImage: `url(${imagePath + "package.png"})`,
+                  transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                }}
+              >
+                <horizontal.Front>
+                  <horizontal.FlipCardTitleArea>
+                    <p>test</p>
+                    <p>test</p>
+                  </horizontal.FlipCardTitleArea>
+
+                  <horizontal.FlipCardImageArea
+                    style={{
+                      backgroundImage: `url(${imagePath + "tree.png"})`,
+                    }}
+                  ></horizontal.FlipCardImageArea>
+                </horizontal.Front>
+                <horizontal.Back>
+                  <horizontal.FlipCardTitleArea>
+                    <p>test</p>
+                    <p>test</p>
+                  </horizontal.FlipCardTitleArea>
+
+                  <horizontal.FlipCardImageArea
+                    style={{
+                      backgroundImage: `url(${imagePath + "people.png"})`,
+                    }}
+                  ></horizontal.FlipCardImageArea>
+                </horizontal.Back>
+              </horizontal.FlipCardInner>
+            </horizontal.FlipCardArea>
+          </horizontal.article>
+
+          {/* 단체 사진*/}
+          <horizontal.article>
+            <h2>Section 02</h2>
+          </horizontal.article>
+          <horizontal.article>
+            <h2>Section 03</h2>
+          </horizontal.article>
+        </horizontal.HorizontalArea>
+      </Section>
+
+      {/* (임시)이미지들 */}
+      <Section ref={(ref) => (sectionRefs.current[3] = ref)}>
+        <h1>section04</h1>
         {/* <ImagesArea
           width={width}
           style={{

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -13,6 +13,16 @@ export const ModalOverlay = styled.div`
   align-items: center;
 `;
 
+// Modal 애니메이션 효과
+const modalAnimation = keyframes`
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-4px);
+  }
+`;
+
 export const ModalContent = styled.div`
   background-color: var(--white-color-100);
   border-radius: 8px;
@@ -21,6 +31,8 @@ export const ModalContent = styled.div`
   min-width: 230px;
   margin: 0 auto;
   text-align: center;
+  animation: ${modalAnimation} 0.4s cubic-bezier(0, 0, 0.18, 0.99) infinite
+    alternate;
 `;
 
 export const ModalTitle = styled.div`

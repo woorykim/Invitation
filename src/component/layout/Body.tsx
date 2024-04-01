@@ -1,11 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import { ModalContext } from "../../context/ModalContext";
 import { Modal } from "../util/Modal";
 
+import * as body from "../styled/body";
 import * as salutation from "../styled/salutation";
 import * as binoculars from "../styled/binoculars";
 import * as horizontal from "../styled/horizontal";
+import * as flipCard from "../styled/flipCard";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
@@ -37,22 +40,6 @@ interface IPositionProps {
     bottom?: number;
   };
 }
-
-const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  margin: 36px 0;
-  padding: 1.6rem;
-  grid-template-columns: repeat(1, 1fr);
-`;
-
-const Section = styled.section`
-  width: 100%;
-  height: auto;
-  opacity: 0;
-  margin-top: 40px;
-  transition: opacity 0.5s ease, margin-top 0.4s ease;
-`;
 
 // section 02
 const ImagesArea = styled.div<{ width: number }>`
@@ -139,32 +126,19 @@ const images: ImageProps = {
   @title Body Components
 */
 export const Body = () => {
-  const [width, setWidth] = useState(window.innerWidth);
-  const [isOpen, setIsOpen] = useState(false);
-  const [isFlipped, setIsFlipped] = useState(false); // 회전 상태
+  const { isModalOpen, closeModal, openModal } = useContext(ModalContext);
+  const [isFlipped, setIsFlipped] = useState(false);
   const sectionRefs = useRef<Array<HTMLElement | null>>([
     null,
     null,
     null,
     null,
-  ]); // 4개의 섹션을 참조하기 위한 배열
+  ]);
 
-  // Event handlers
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  // Event
   const toggleFlip = () => {
     setIsFlipped(!isFlipped); // 상태 토글
   };
-
-  // 좌우 여백 10px씩 제외한 값으로 설정
-  useEffect(() => {
-    const handleResize = () => {
-      setWidth(window.innerWidth - 20);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   // 브라우저 Viewport 설정한 요소의 교차점을 관찰
   useEffect(() => {
@@ -185,38 +159,38 @@ export const Body = () => {
           } else {
             // viewport에 벗어난 섹션 style 처리
             targetElement.style.opacity = "0";
-            targetElement.style.marginTop = "40px";
+            targetElement.style.marginTop = "20px";
           }
         });
       },
-      // 섹션이 30% 이상 들어올 때 콜백 실행
-      { threshold: 0.3 }
+      // 섹션이 20% 이상 들어올 때 콜백 실행
+      { threshold: 0.2 }
     );
 
     // 모든 섹션에 대해 observer 설정
     sectionRefs.current.forEach((ref) => {
       if (ref) {
-        observer && observer.observe(ref);
+        observer.observe(ref);
       }
     });
 
     return () => {
       // 컴포넌트가 언마운트될 때 observer 해제
-      observer && observer.disconnect();
+      observer.disconnect();
     };
   }, []);
 
   return (
-    <Wrapper>
+    <body.Wrapper>
       {/* 포스터  */}
-      <Section ref={(ref) => (sectionRefs.current[0] = ref)}>
+      <body.Section ref={(ref) => (sectionRefs.current[0] = ref)}>
         <salutation.SolutionArea>
           <salutation.Img src={imagePath + "together.png"} alt="우리와 은사" />
 
           {/* 텍스트 */}
           <salutation.Content>
             <salutation.Solution>
-              우리의 특별한 날에 <br />
+              저희의 특별한 날에 <br />
               함께 해주셔서 감사합니다
             </salutation.Solution>
 
@@ -226,15 +200,67 @@ export const Body = () => {
             </salutation.Day>
 
             <salutation.Woory>WOORY</salutation.Woory>
+
             <salutation.Eunsa>
-              EUNSA <small>with (Moon * Ite)</small>
+              <span>*</span> EUNSA <small> with. 달이와 이트</small>
             </salutation.Eunsa>
           </salutation.Content>
         </salutation.SolutionArea>
-      </Section>
+      </body.Section>
+
+      {/* 가로 스크롤  */}
+      <body.Section ref={(ref) => (sectionRefs.current[1] = ref)}>
+        {/* Modal */}
+        <Modal isOpen={isModalOpen} onClose={closeModal}></Modal>
+
+        <horizontal.HorizontalArea>
+          {/* 에어드롭 & 인물소개 (우리 은사) */}
+          <horizontal.article>
+            <flipCard.FlipCardArea onClick={toggleFlip}>
+              <flipCard.FlipCardTitleArea>
+                <h4>ABOUT Character </h4>
+                <h1>{isFlipped ? "Lee EunSa" : "Kim Woory"}</h1>
+              </flipCard.FlipCardTitleArea>
+              <flipCard.FlipCardInner
+                style={{
+                  backgroundImage: `url(${imagePath + "package_white.png"})`,
+                  transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                }}
+              >
+                <flipCard.Front>
+                  <flipCard.FlipCardImageArea
+                    src={imagePath + "eunsa.png"}
+                  ></flipCard.FlipCardImageArea>
+                </flipCard.Front>
+                <flipCard.Back>
+                  <flipCard.FlipCardImageArea
+                    src={imagePath + "eunsa.png"}
+                  ></flipCard.FlipCardImageArea>
+                </flipCard.Back>
+              </flipCard.FlipCardInner>
+              <flipCard.ContentsArea>
+                <h1>{isFlipped ? "자신감" : "아이디어뱅크"}</h1>
+              </flipCard.ContentsArea>
+            </flipCard.FlipCardArea>
+          </horizontal.article>
+
+          {/* 단체 사진*/}
+          <horizontal.article>
+            <h1>Baby Days </h1>
+
+            <div>
+              {/* 1 */}
+              <div>
+                <img src={imagePath + "people.png"} alt="" />
+              </div>
+              {/* 2 */}
+            </div>
+          </horizontal.article>
+        </horizontal.HorizontalArea>
+      </body.Section>
 
       {/* 비디오 */}
-      <Section ref={(ref) => (sectionRefs.current[1] = ref)}>
+      <body.Section ref={(ref) => (sectionRefs.current[2] = ref)}>
         <binoculars.VideoArea>
           <binoculars.MovieTopBottom>
             <binoculars.BinocularsArea
@@ -247,59 +273,10 @@ export const Body = () => {
             </binoculars.Video>
           </binoculars.MovieTopBottom>
         </binoculars.VideoArea>
-      </Section>
-
-      {/* 가로 스크롤  */}
-      <Section ref={(ref) => (sectionRefs.current[2] = ref)}>
-        {/* Modal */}
-        <Modal isOpen={isOpen} onClose={closeModal}></Modal>
-
-        <horizontal.HorizontalArea>
-          {/* 에어드롭 & 인물소개 */}
-          <horizontal.article>
-            <horizontal.FlipCardArea onClick={toggleFlip}>
-              <horizontal.FlipCardInner
-                style={{
-                  backgroundImage: `url(${imagePath + "package.png"})`,
-                  transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                }}
-              >
-                <horizontal.Front>
-                  <horizontal.FlipCardTitleArea>
-                    <h4>ABOUT ME</h4>
-                    <h1>Lee EunSa</h1>
-                  </horizontal.FlipCardTitleArea>
-
-                  <horizontal.FlipCardImageArea
-                    src={imagePath + "eunsa.png"}
-                  ></horizontal.FlipCardImageArea>
-                </horizontal.Front>
-                <horizontal.Back>
-                  <horizontal.FlipCardTitleArea>
-                    <h4>ABOUT ME</h4>
-                    <h1>Kim Woory</h1>
-                  </horizontal.FlipCardTitleArea>
-
-                  <horizontal.FlipCardImageArea
-                    src={imagePath + "eunsa.png"}
-                  ></horizontal.FlipCardImageArea>
-                </horizontal.Back>
-              </horizontal.FlipCardInner>
-            </horizontal.FlipCardArea>
-          </horizontal.article>
-
-          {/* 단체 사진*/}
-          <horizontal.article>
-            <h2>Section 02</h2>
-          </horizontal.article>
-          <horizontal.article>
-            <h2>Section 03</h2>
-          </horizontal.article>
-        </horizontal.HorizontalArea>
-      </Section>
+      </body.Section>
 
       {/* (임시)이미지들 */}
-      <Section ref={(ref) => (sectionRefs.current[3] = ref)}>
+      <body.Section ref={(ref) => (sectionRefs.current[3] = ref)}>
         <h1>section04</h1>
         {/* <ImagesArea
           width={width}
@@ -317,7 +294,7 @@ export const Body = () => {
             />
           ))}
         </ImagesArea> */}
-      </Section>
-    </Wrapper>
+      </body.Section>
+    </body.Wrapper>
   );
 };

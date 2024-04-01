@@ -189,20 +189,20 @@ export const Body = () => {
           }
         });
       },
-      // 섹션이 60% 이상 들어올 때 콜백 실행
-      { threshold: 0.6 }
+      // 섹션이 30% 이상 들어올 때 콜백 실행
+      { threshold: 0.3 }
     );
 
     // 모든 섹션에 대해 observer 설정
     sectionRefs.current.forEach((ref) => {
       if (ref) {
-        observer.observe(ref);
+        observer && observer.observe(ref);
       }
     });
 
     return () => {
       // 컴포넌트가 언마운트될 때 observer 해제
-      observer.disconnect();
+      observer && observer.disconnect();
     };
   }, []);
 
@@ -266,26 +266,22 @@ export const Body = () => {
               >
                 <horizontal.Front>
                   <horizontal.FlipCardTitleArea>
-                    <p>test</p>
-                    <p>test</p>
+                    <h4>ABOUT ME</h4>
+                    <h1>Lee EunSa</h1>
                   </horizontal.FlipCardTitleArea>
 
                   <horizontal.FlipCardImageArea
-                    style={{
-                      backgroundImage: `url(${imagePath + "tree.png"})`,
-                    }}
+                    src={imagePath + "eunsa.png"}
                   ></horizontal.FlipCardImageArea>
                 </horizontal.Front>
                 <horizontal.Back>
                   <horizontal.FlipCardTitleArea>
-                    <p>test</p>
-                    <p>test</p>
+                    <h4>ABOUT ME</h4>
+                    <h1>Kim Woory</h1>
                   </horizontal.FlipCardTitleArea>
 
                   <horizontal.FlipCardImageArea
-                    style={{
-                      backgroundImage: `url(${imagePath + "people.png"})`,
-                    }}
+                    src={imagePath + "eunsa.png"}
                   ></horizontal.FlipCardImageArea>
                 </horizontal.Back>
               </horizontal.FlipCardInner>

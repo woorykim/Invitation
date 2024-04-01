@@ -15,76 +15,79 @@ export const article = styled.div`
   height: 100vh;
   flex: 0 0 auto;
   scroll-snap-align: start;
-  padding: 40px 0;
+  /* padding: 40px 0; */
 `;
 
 export const FlipCardArea = styled.div`
-  width: fit-content;
-  max-width: 100%;
-  min-width: 330px;
+  width: 100%;
   height: 100%;
   margin: 0 auto;
-  position: relative;
   border-radius: 24px;
   perspective: 500px; /* 원근감 설정 */
 `;
 
 export const FlipCardInner = styled.div`
-  position: relative;
   width: 100%;
-  height: 100%;
+  min-width: 287px;
+  max-width: 356px;
+  height: calc(100% - 28%);
+  margin: 0 auto;
+  border-radius: 24px;
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
-  position: relative;
-
-  & div {
-    width: 100%;
-    height: 100%;
-
+  position: relative; /* 부모 요소를 기준으로 자식 요소를 배치하기 위해 필요 */
+  & > div:first-child,
+  & > div:nth-child(2) {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 `;
 
-export const Front = styled.div`
-  & div:last-child {
-    position: absolute;
-    background-size: calc(100% - 20%);
-    background-position: 50% 85%;
-    background-repeat: no-repeat;
-    left: 0;
-    bottom: 0;
-  }
-`;
+export const Front = styled.div``;
+
 export const Back = styled.div`
-  /* 초기에는 뒷면이 보이도록 회전시킴 */
   transform: rotateY(180deg);
+`;
 
-  & div:last-child {
-    position: absolute;
-    background-size: calc(100% - 20%);
-    background-position: 50% 85%;
-    background-repeat: no-repeat;
-    left: 0;
-    bottom: 0;
+export const FlipCardTitleArea = styled.div`
+  padding: 50px 0;
+  display: grid;
+  gap: 4px;
+
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    font-weight: 900;
+  }
+
+  & h4 {
+    font-size: 1.125rem;
+  }
+  & h1 {
+    font-size: 2.5rem;
   }
 `;
 
-export const FlipCardTitleArea = styled.div``;
-
-export const FlipCardImageArea = styled.div``;
-
-export const Image = styled.img`
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+export const FlipCardImageArea = styled.img`
   position: absolute;
-  transform: translate(-50%, -50%);
+  bottom: 36.7%;
   left: 50%;
-  top: 50%;
+  transform: translate(-50%, 50%);
+  max-width: 230px;
+  max-height: 100%;
+  width: -webkit-fill-available;
 `;

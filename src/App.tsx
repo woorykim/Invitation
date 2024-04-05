@@ -18,12 +18,12 @@ function App() {
   useWindowResize();
 
   return (
-    <ModalProvider>
-      <Wrapper>
-        <HeadBar scroll={y}></HeadBar>
-        <Body></Body>
-      </Wrapper>
-    </ModalProvider>
+    // <ModalProvider>
+    <Wrapper>
+      <HeadBar scroll={y}></HeadBar>
+      <Body></Body>
+    </Wrapper>
+    //</ModalProvider>
   );
 }
 

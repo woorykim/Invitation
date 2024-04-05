@@ -12,7 +12,7 @@ export const SolutionArea = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 100vmin;
+  width: 80vmin;
   height: auto;
   border-radius: 160px;
 `;

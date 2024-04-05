@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 
 export const Section = styled.section`
   width: 100%;
-  height: 100%;
+  height: auto;
   opacity: 0;
   margin-top: 0px;
   margin-bottom: 16px;
@@ -20,5 +20,5 @@ export const Section = styled.section`
 
   background-color: var(--white-color-100);
   border-radius: 15px;
-  box-shadow: 0px 4px 9pßx rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.4);
 `;

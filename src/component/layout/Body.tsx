@@ -9,6 +9,7 @@ import * as salutation from "../styled/salutation";
 import * as binoculars from "../styled/binoculars";
 import * as horizontal from "../styled/horizontal";
 import * as flipCard from "../styled/flipCard";
+import { StackedCards } from "../util/Card";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
@@ -211,11 +212,11 @@ export const Body = () => {
       {/* 가로 스크롤  */}
       <body.Section ref={(ref) => (sectionRefs.current[1] = ref)}>
         {/* Modal */}
-        <Modal isOpen={isModalOpen} onClose={closeModal}></Modal>
+        {/* <Modal isOpen={isModalOpen} onClose={closeModal}></Modal> */}
 
         <horizontal.HorizontalArea>
           {/* 에어드롭 & 인물소개 (우리 은사) */}
-          <horizontal.article>
+          <horizontal.article className="about">
             <flipCard.FlipCardArea onClick={toggleFlip}>
               <flipCard.FlipCardTitleArea>
                 <h4>ABOUT Character </h4>
@@ -248,13 +249,7 @@ export const Body = () => {
           <horizontal.article>
             <h1>Baby Days </h1>
 
-            <div>
-              {/* 1 */}
-              <div>
-                <img src={imagePath + "people.png"} alt="" />
-              </div>
-              {/* 2 */}
-            </div>
+            <StackedCards />
           </horizontal.article>
         </horizontal.HorizontalArea>
       </body.Section>

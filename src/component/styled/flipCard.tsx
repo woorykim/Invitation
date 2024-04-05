@@ -42,17 +42,15 @@ const flipAnimation = keyframes`
 `;
 
 export const FlipCardInner = styled.div`
-  width: 100%;
-  min-width: 284px;
-  max-width: 100%;
-  height: 480px;
+  width: 80vmin;
+  height: 100vmin;
   margin: 0 auto;
   border-radius: 24px;
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   /* 부모 요소를 기준으로 자식 요소를 배치하기 위해 필요 */
   position: relative;
@@ -62,13 +60,14 @@ export const FlipCardInner = styled.div`
   & > div:nth-child(2) {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    width: 100%;
-    height: 100%;
+    width: 45vmin;
+    height: auto;
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 35%;
+    left: 25%;
   }
 `;
 
@@ -79,14 +78,8 @@ export const Back = styled.div`
 `;
 
 export const FlipCardImageArea = styled.img`
-  position: absolute;
-  bottom: 35%;
-  left: 50%;
-  transform: translate(-50%, 50%);
   width: -webkit-fill-available;
-  max-width: 190px;
-  min-width: inherit;
-  max-height: 100%;
+  height: auto;
 `;
 
 export const ContentsArea = styled.div`

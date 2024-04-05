@@ -12,8 +12,8 @@ export const SolutionArea = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 100vmin;
+  height: auto;
   border-radius: 160px;
 `;
 

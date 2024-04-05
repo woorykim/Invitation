@@ -17,7 +17,8 @@ export const Section = styled.section`
   margin-bottom: 16px;
   transition: opacity 0.2s ease, margin-top 0.4s ease-in-out;
   padding: 10px 4px;
+
   background-color: var(--white-color-100);
   border-radius: 15px;
-  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 4px 9pßx rgba(0, 0, 0, 0.4);
 `;

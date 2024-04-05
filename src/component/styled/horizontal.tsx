@@ -33,6 +33,7 @@ export const article = styled.div`
   display: grid;
   gap: 15px;
   overflow: hidden;
+  padding-bottom: 10px;
 `;
 export const TitleWrapper = styled.div`
   width: 100%;

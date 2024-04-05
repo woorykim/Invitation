@@ -119,7 +119,7 @@ export const Body = () => {
                   target.style.marginTop = "0";
                 } else {
                   target.style.opacity = "0";
-                  target.style.marginTop = "20px";
+                  target.style.marginTop = "20px"; //TODO: 버벅임 수정
                 }
               });
             },

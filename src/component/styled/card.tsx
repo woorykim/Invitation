@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
+// TODO: 마진 위 아래값 처리 (하단 overflow 되는 현상 처리
 export const wrapperStyle = styled.div`
   margin: 5.5% 0;
   width: 100%;

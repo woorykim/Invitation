@@ -3,8 +3,10 @@
  */
 export interface ImageProps {
   [key: string]: {
-    name: string;
-    src: string;
-    alt: string;
+    [key: string]: {
+      name: string;
+      src: string;
+      alt: string;
+    };
   };
 }

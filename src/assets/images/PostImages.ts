@@ -5,23 +5,23 @@ import { ImageProps } from "../../types/ImageTypes";
  */
 export const images: ImageProps = {
   image1: {
-    name: "woory_01",
-    src: "car.png",
-    alt: "post Car",
+    name: "woory01",
+    src: "card_baby_woory_01.png",
+    alt: "어릴적 우리",
   },
   image2: {
-    name: "woory_02",
-    src: "people.png",
-    alt: "post People",
+    name: "eunsa01",
+    src: "card_baby_eunsa_01.png",
+    alt: "어릴적 우리",
   },
   image3: {
-    name: "Supermarket",
-    src: "supermarket.png",
-    alt: "post Supermarket",
+    name: "woory02",
+    src: "card_baby_woory_02.png",
+    alt: "어릴적 우리",
   },
   image4: {
-    name: "Tree",
-    src: "tree.png",
-    alt: "post Tree",
+    name: "eunsa02",
+    src: "card_baby_woory_01.png",
+    alt: "어릴적 은사",
   },
 };

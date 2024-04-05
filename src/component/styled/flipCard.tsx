@@ -8,29 +8,6 @@ export const FlipCardArea = styled.div`
   perspective: 500px; /* 원근감 설정 */
 `;
 
-export const FlipCardTitleArea = styled.div`
-  padding: 10px 0;
-  display: grid;
-  gap: 4px;
-  text-align: center;
-
-  & h1,
-  & h2,
-  & h3,
-  & h4,
-  & h5,
-  & h6 {
-    font-weight: 900;
-  }
-
-  & h4 {
-    font-size: 1.125rem;
-  }
-  & h1 {
-    font-size: 2.5rem;
-  }
-`;
-
 // Card 애니메이션 효과
 const flipAnimation = keyframes`
   0% {
@@ -42,7 +19,7 @@ const flipAnimation = keyframes`
 `;
 
 export const FlipCardInner = styled.div`
-  width: 80vmin;
+  width: 70vmin;
   height: 100vmin;
   margin: 0 auto;
   border-radius: 24px;
@@ -80,9 +57,4 @@ export const Back = styled.div`
 export const FlipCardImageArea = styled.img`
   width: -webkit-fill-available;
   height: auto;
-`;
-
-export const ContentsArea = styled.div`
-  width: fit-content;
-  margin: 0 auto;
 `;

@@ -30,5 +30,52 @@ export const article = styled.div`
   height: 100%;
   flex: 0 0 auto;
   scroll-snap-align: start;
-  /* padding: 40px 0; */
+  display: grid;
+  gap: 15px;
+`;
+export const TitleWrapper = styled.div`
+  width: 100%;
+  height: auto;
+`;
+
+export const TitleArea = styled.div`
+  padding: 10px 0;
+  display: grid;
+  gap: 4px;
+  text-align: center;
+
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    font-weight: 900;
+  }
+
+  & h4 {
+    font-size: 1.125rem;
+  }
+  & h1 {
+    font-size: 2.5rem;
+  }
+`;
+
+export const ChipArea = styled.div`
+  width: fit-content;
+  height: auto;
+  padding: 10px;
+  background: tan;
+  border-radius: 25px;
+  margin: 0 auto;
+`;
+
+export const Chip = styled.h1``;
+
+export const ContentArea = styled.div`
+  width: fit-content;
+  margin: 0.75rem auto;
+`;
+export const Content = styled.p`
+  font-size: 1.5rem;
 `;

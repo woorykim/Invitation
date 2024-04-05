@@ -9,119 +9,11 @@ import * as salutation from "../styled/salutation";
 import * as binoculars from "../styled/binoculars";
 import * as horizontal from "../styled/horizontal";
 import * as flipCard from "../styled/flipCard";
-import { StackedCards } from "../util/Card";
+import { StackedCards } from "../util/StackedCards";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
 const videoPath = process.env.PUBLIC_URL + "/common/videos/";
-
-/** * images type */
-interface ImageProps {
-  [key: string]: {
-    name: string;
-    src: string;
-    alt: string;
-    position: { top?: number; left?: number; right?: number; bottom?: number };
-    size: {
-      width?: number;
-      height?: number;
-    };
-  };
-}
-
-interface IPositionProps {
-  size: {
-    width?: number;
-    height?: number;
-  };
-  position: {
-    top?: number;
-    left?: number;
-    right?: number;
-    bottom?: number;
-  };
-}
-
-// section 02
-const ImagesArea = styled.div<{ width: number }>`
-  // Mobile
-  width: 100%;
-  height: 100vh;
-  margin: 0 auto;
-  position: relative;
-  background-color: var(--white-color-100);
-  box-shadow: 5px 5px 24px rgba(0, 0, 0, 0.2);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
-    // Tablet
-  }
-  @media screen and (min-width: 1024px) {
-    // PC
-  }
-`;
-
-const Image = styled.img<IPositionProps>`
-  width: ${({ size }) => `${size.width}%` ?? "auto"};
-  max-width: 100%;
-  height: auto;
-  position: absolute;
-  top: ${({ position }) => position.top ?? 0}%;
-  left: ${({ position }) => position.left ?? 0}px;
-`;
-
-const images: ImageProps = {
-  image1: {
-    name: "Car",
-    src: "car.png",
-    alt: "post Car",
-    position: {
-      top: 0,
-      left: 0,
-    },
-    size: {
-      width: 20,
-    },
-  },
-  image2: {
-    name: "People",
-    src: "people.png",
-    alt: "post People",
-    position: {
-      top: 0,
-      left: 0,
-    },
-    size: {
-      width: 10,
-    },
-  },
-  image3: {
-    name: "Supermarket",
-    src: "supermarket.png",
-    alt: "post Supermarket",
-    position: {
-      top: 0,
-      left: 0,
-    },
-    size: {
-      width: 10,
-    },
-  },
-  image4: {
-    name: "Tree",
-    src: "tree.png",
-    alt: "post Tree",
-    position: {
-      top: 0,
-      left: 0,
-    },
-    size: {
-      width: 10,
-    },
-  },
-};
 
 /**
   @title Body Components
@@ -217,11 +109,17 @@ export const Body = () => {
         <horizontal.HorizontalArea>
           {/* 에어드롭 & 인물소개 (우리 은사) */}
           <horizontal.article className="about">
-            <flipCard.FlipCardArea onClick={toggleFlip}>
-              <flipCard.FlipCardTitleArea>
+            <horizontal.TitleWrapper>
+              <horizontal.TitleArea>
                 <h4>ABOUT Character </h4>
                 <h1>{isFlipped ? "Lee EunSa" : "Kim Woory"}</h1>
-              </flipCard.FlipCardTitleArea>
+              </horizontal.TitleArea>
+              <horizontal.ChipArea>
+                <horizontal.Chip>Package</horizontal.Chip>
+              </horizontal.ChipArea>
+            </horizontal.TitleWrapper>
+
+            <flipCard.FlipCardArea onClick={toggleFlip}>
               <flipCard.FlipCardInner
                 style={{
                   backgroundImage: `url(${imagePath + "package_white.png"})`,
@@ -239,17 +137,28 @@ export const Body = () => {
                   ></flipCard.FlipCardImageArea>
                 </flipCard.Back>
               </flipCard.FlipCardInner>
-              <flipCard.ContentsArea>
-                <h1>{isFlipped ? "자신감" : "아이디어뱅크"}</h1>
-              </flipCard.ContentsArea>
             </flipCard.FlipCardArea>
+
+            <horizontal.ContentArea>
+              <horizontal.Content>
+                {isFlipped ? "자신감" : "아이디어뱅크"}
+              </horizontal.Content>
+            </horizontal.ContentArea>
           </horizontal.article>
 
           {/* 단체 사진*/}
           <horizontal.article>
-            <h1>Baby Days </h1>
+            <horizontal.TitleWrapper>
+              <horizontal.TitleArea>
+                <h4>ABOUT Life </h4>
+                <h1>Baby days</h1>
+              </horizontal.TitleArea>
+              <horizontal.ChipArea>
+                <horizontal.Chip>베이비 시절</horizontal.Chip>
+              </horizontal.ChipArea>
+            </horizontal.TitleWrapper>
 
-            <StackedCards />
+            <StackedCards src={imagePath} />
           </horizontal.article>
         </horizontal.HorizontalArea>
       </body.Section>

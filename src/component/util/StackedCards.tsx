@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { PanInfo } from "framer-motion";
 
 import * as card from "../styled/card";
-import { images } from "../../assets/images/PostImages";
 
 const CARD_OFFSET = 10;
 const SCALE_FACTOR = 0.06; // 절대경로 설정
 
 interface StackedCardsProps {
   src: string; // 이미지 경로를 가리키는 prop
+  images: { [key: string]: { src: string; alt: string } }; // 이미지 객체의 타입 정의
 }
 
 export const StackedCards: React.FC<StackedCardsProps> = (props) => {
-  const { src } = props;
+  const { src, images } = props;
   const imageKeys = Object.keys(images); // 이미지 객체의 키 배열을 변수에 저장
   const [cards, setCards] = useState(imageKeys); // 카드 배열
   const [swipedRight, setSwipedRight] = useState(false);

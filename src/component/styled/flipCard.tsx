@@ -19,7 +19,7 @@ const flipAnimation = keyframes`
 `;
 
 export const FlipCardInner = styled.div`
-  width: 70vmin;
+  width: 75vmin;
   height: 100vmin;
   margin: 0 auto;
   border-radius: 24px;

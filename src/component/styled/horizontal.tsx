@@ -32,6 +32,7 @@ export const article = styled.div`
   scroll-snap-align: start;
   display: grid;
   gap: 15px;
+  overflow: hidden;
 `;
 export const TitleWrapper = styled.div`
   width: 100%;
@@ -70,7 +71,11 @@ export const ChipArea = styled.div`
   margin: 0 auto;
 `;
 
-export const Chip = styled.h1``;
+export const Chip = styled.p`
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.0081rem;
+`;
 
 export const ContentArea = styled.div`
   width: fit-content;

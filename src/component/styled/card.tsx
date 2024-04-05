@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const wrapperStyle = styled.div`
-  margin: 3% 0;
+  margin: 5.5% 0;
   width: 100%;
   height: 100%;
   position: relative;
@@ -19,8 +19,8 @@ export const wrapperStyle = styled.div`
 
 export const CardWrap = styled.div`
   position: relative;
-  width: 80vmin;
-  height: 100vmin;
+  width: 70vmin;
+  height: 90vmin;
   margin: 0 auto;
   text-align: center;
 `;
@@ -34,6 +34,7 @@ export const CardItem = styled(motion.li)`
   list-style: none;
   background-color: transparent;
   overflow: hidden;
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.4);
 `;
 
 export const Image = styled.img`

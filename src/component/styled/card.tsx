@@ -30,16 +30,18 @@ export const CardItem = styled(motion.li)`
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 8px;
+  border-radius: 34px;
   transform-origin: top center;
   list-style: none;
-  background-color: transparent;
+  background-color: white;
   overflow: hidden;
   box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.4);
+  padding: 10px;
 `;
 
 export const Image = styled.img`
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
+  border-radius: 24px;
 `;

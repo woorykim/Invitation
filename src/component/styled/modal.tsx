@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { motion } from "framer-motion";
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -23,7 +24,7 @@ const modalAnimation = keyframes`
   }
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styled(motion.div)`
   background-color: var(--white-color-100);
   border-radius: 8px;
   max-width: 100%;

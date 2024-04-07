@@ -8,6 +8,16 @@ export const HorizontalArea = styled.div`
   overflow-y: hidden;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
 
   &::-webkit-scrollbar {
     height: 10px;
@@ -67,7 +77,7 @@ export const ChipArea = styled.div`
   width: fit-content;
   height: auto;
   padding: 10px;
-  background: tan;
+  background: var(--custom-frenchPurple-color);
   border-radius: 25px;
   margin: 0 auto;
 `;

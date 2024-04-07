@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const SolutionArea = styled.div`
+export const SolutionArea = styled(motion.div)`
   /* width: calc(100% - 40%); */
   width: 100%;
   max-width: 100%;

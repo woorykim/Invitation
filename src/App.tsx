@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useScroll } from "./hook/useScroll";
 import { useWindowResize } from "./hook/useWindowResize";
 import { ModalProvider } from "./context/ModalContext";
+
 import { HeadBar } from "./component/layout/HeadBar";
 import { Body } from "./component/layout/Body";
 
@@ -18,12 +19,12 @@ function App() {
   useWindowResize();
 
   return (
-    // <ModalProvider>
-    <Wrapper>
-      <HeadBar scroll={y}></HeadBar>
-      <Body></Body>
-    </Wrapper>
-    //</ModalProvider>
+    <ModalProvider>
+      <Wrapper>
+        <HeadBar scroll={y}></HeadBar>
+        <Body></Body>
+      </Wrapper>
+    </ModalProvider>
   );
 }
 

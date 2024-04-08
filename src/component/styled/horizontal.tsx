@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { motion } from "framer-motion";
 
 export const HorizontalArea = styled.div`
   width: 100%;
@@ -35,7 +36,7 @@ export const HorizontalArea = styled.div`
   }
 `;
 
-export const article = styled.div`
+export const article = styled(motion.div)`
   width: 100%; /* 가로 스크롤을 가로 방향으로 만들기 위해 화면 너비와 같은 값으로 설정 */
   height: 100%;
   flex: 0 0 auto;
@@ -44,7 +45,18 @@ export const article = styled.div`
   gap: 15px;
   overflow: hidden;
   padding-bottom: 10px;
+  position: relative;
 `;
+
+export const ArrowButton = styled.button`
+  width: auto;
+  height: auto;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+`;
+
 export const TitleWrapper = styled.div`
   width: 100%;
   height: auto;
@@ -67,6 +79,7 @@ export const TitleArea = styled.div`
 
   & h4 {
     font-size: 1.125rem;
+    color: var(--white-color-950);
   }
   & h1 {
     font-size: 2.5rem;
@@ -77,9 +90,11 @@ export const ChipArea = styled.div`
   width: fit-content;
   height: auto;
   padding: 10px;
-  background: var(--custom-frenchPurple-color);
+  background: var(--white-color-200);
   border-radius: 25px;
   margin: 0 auto;
+  box-shadow: inset -12px 10px 14px #ffffff73,
+    inset 3px 3px 5px rgba(94, 104, 121, 0.288);
 `;
 
 export const Chip = styled.p`

@@ -11,12 +11,12 @@ export const HeaderWrapper = styled(motion.header)`
   z-index: 999;
   position: fixed;
   top: 0;
-  right: 0;
+  right: 10px;
 `;
 export const MapArea = styled(motion.div)<{ $scroll: number }>`
   padding: 10px;
   width: fit-content;
-  background: var(--custom-frenchPurple-color);
+  background: var(--custom-frenchRose-color);
   cursor: pointer;
   transition: 0.3s;
   border-radius: 3.125rem;

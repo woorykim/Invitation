@@ -34,8 +34,10 @@ const textVariants = (index: number): Variants => ({
 */
 export const BlinkText = () => {
   const title = {
-    first: `소중한 순간을`,
-    second: `함께해 주셔서 감사합니다.`,
+    first: `소중한`,
+    second: `분들을`,
+    third: `초대합니다  `,
+    fourth: `:)`,
   };
 
   return (
@@ -54,8 +56,24 @@ export const BlinkText = () => {
             {char}
           </blink.BlinkingChar>
         ))}
-        <br />
+
+        {/* 공백 */}
+        <blink.Space />
+
         {title.second.split("").map((char, index) => (
+          <blink.BlinkingChar
+            key={index}
+            variants={textVariants(index)}
+            custom={textVariants}
+          >
+            {char}
+          </blink.BlinkingChar>
+        ))}
+
+        {/* 공백 */}
+        <blink.Space />
+
+        {title.third.split("").map((char, index) => (
           <blink.BlinkingChar
             key={index}
             variants={textVariants(index)}
@@ -66,7 +84,24 @@ export const BlinkText = () => {
         ))}
       </blink.TitleArea>
 
-      <p>이곳은 조금 더 감사함을 표현하는 곳</p>
+      <blink.ContentArea>
+        <blink.Content>사랑이 무엇인지</blink.Content>
+        <blink.Content>누군가 물어왔을 때,</blink.Content>
+        <blink.Content>망설임 없이</blink.Content>
+        <blink.Content>서로를 떠올리던</blink.Content>
+        <blink.Content>그 마음으로.</blink.Content>
+        <blink.Content>따라사로운 봄날</blink.Content>
+        <blink.Content>저희 둘, 결혼합니다</blink.Content>
+      </blink.ContentArea>
+
+      <blink.NameArea>
+        <blink.Name>
+          <span>이창건 · 옹영신</span>의 장남 <span>이은사</span>
+        </blink.Name>
+        <blink.Name>
+          <span>김풍연 · 오영화</span>의 차녀 <span>김우리</span>
+        </blink.Name>
+      </blink.NameArea>
     </blink.BlinkArea>
   );
 };

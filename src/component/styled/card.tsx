@@ -10,6 +10,7 @@ export const wrapperStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     // Tablet
   }

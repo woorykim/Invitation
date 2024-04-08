@@ -2,14 +2,34 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const SolutionArea = styled(motion.div)`
-  /* width: calc(100% - 40%); */
   width: 100%;
   max-width: 100%;
   height: auto;
   margin: 0 auto;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   text-align: center;
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -12vmin;
+    left: 0;
+    background-image: url("/Invitation/common/images/scroll_bg.png");
+    background-size: contain;
+    background-position: top center;
+    background-repeat: no-repeat;
+    width: -webkit-fill-available;
+    height: 100%;
+  }
+`;
+
+export const Title = styled.div`
+  padding: 10px 0;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1875rem;
+  color: var(--custom-darkBeige-color);
 `;
 
 export const Img = styled.img`
@@ -54,11 +74,6 @@ export const Content = styled.div`
       font-size: 2.8rem !important;
     }
   }
-`;
-
-export const Solution = styled.p`
-  left: 1rem;
-  top: 0;
 `;
 
 export const Day = styled.p`

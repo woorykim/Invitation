@@ -1,10 +1,10 @@
 import styled, { keyframes } from "styled-components";
 
-export const CalendarArea = styled.section`
+export const CalendarArea = styled.div`
   width: 100%;
   min-width: 250px;
   height: 100%;
-  padding: 40px 0;
+  padding: 40px 25px;
 `;
 
 export const DayInnerArea = styled.div`

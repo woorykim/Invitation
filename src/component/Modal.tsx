@@ -1,5 +1,6 @@
 import React from "react";
 import * as modal from "./styled/modal";
+import { KakaoMap } from "./KakaoMap";
 
 /** * images type */
 interface ModalProps {
@@ -23,15 +24,16 @@ export const Modal = ({ isOpen, onClose }: ModalProps) => {
           transition={{ duration: 0.3 }}
           exit={{ opacity: 0, y: 50 }}
         >
-          <modal.ModalTitle>
-            <h2>웨딩 홀 위치</h2>
-            <p>
-              <span>👰🏻🤵🏻</span>
-            </p>
-          </modal.ModalTitle>
-          <modal.ButtonArea onClick={onClose}>
-            <modal.ModalButton>닫기</modal.ModalButton>
-          </modal.ButtonArea>
+          <modal.ModalHeader>
+            <modal.ModalTitle>
+              <h2>오시는 길 🚶🏻‍♀️</h2>
+            </modal.ModalTitle>
+            <modal.ButtonArea onClick={onClose}>
+              <modal.ModalButton>닫기</modal.ModalButton>
+            </modal.ButtonArea>
+          </modal.ModalHeader>
+
+          <KakaoMap />
         </modal.ModalContent>
       ) : null}
     </modal.ModalOverlay>

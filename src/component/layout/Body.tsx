@@ -259,26 +259,6 @@ export const Body = () => {
             </horizontal.article>
           </horizontal.HorizontalArea>
         </body.Section>
-
-        <body.Section {...sectionVariants}>
-          <h1>test</h1>
-          <KakaoMap></KakaoMap>
-        </body.Section>
-        {/* 비디오 */}
-        {/* <body.Section {...sectionVariants}>
-          <binoculars.VideoArea>
-            <binoculars.MovieTopBottom>
-              <binoculars.BinocularsArea
-                style={{
-                  backgroundImage: `url(${imagePath + "binoculars.png"})`,
-                }}
-              />
-              <binoculars.Video muted autoPlay loop>
-                <source src={videoPath + "sound.mp4"} type="video/mp4" />
-              </binoculars.Video>
-            </binoculars.MovieTopBottom>
-          </binoculars.VideoArea>
-        </body.Section> */}
       </body.PositionArea>
     </body.Wrapper>
   );

@@ -8,6 +8,11 @@ export const Calendar = () => {
         <calendar.SecTitleWrap>
           <h2>
             <span>
+              <span>H</span>
+              <span>Y</span>
+              <span>P</span>
+              <span>P</span>
+              <span>Y</span>&nbsp;
               <span>T</span>
               <span>H</span>
               <span>E</span>
@@ -17,6 +22,7 @@ export const Calendar = () => {
               <span>I</span>
               <span>N</span>
               <span>G</span>&nbsp;
+              <span>D</span>
               <span>A</span>
               <span>Y</span>
             </span>

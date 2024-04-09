@@ -132,7 +132,7 @@ export const DrawingArea = styled(motion.div)`
   height: auto;
   position: absolute;
   right: 50px;
-  bottom: 54px;
+  bottom: 75px;
 `;
 
 export const DrawingImage = styled(motion.img)`

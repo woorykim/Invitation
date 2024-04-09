@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Variants } from "framer-motion";
 
 import * as main from "../styled/main";
@@ -67,8 +67,12 @@ const ItemVariants: Variants = {
 */
 export const Body = () => {
   const [currentArticle, setCurrentArticle] = useState(0);
+  const mainRef = useRef(null);
+  const [height, setHeight] = useState(0);
   const totalArticles = 3; // 전체 article 개수에 맞게 수정해주세요
   let touchStartX = 0;
+
+  console.log(height);
 
   // Handle Events
   const handleSwipeStart = (event: React.TouchEvent | React.MouseEvent) => {
@@ -97,10 +101,29 @@ export const Body = () => {
     }
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (mainRef.current) {
+        const { offsetHeight } = mainRef.current;
+        setHeight(offsetHeight);
+      }
+    };
+
+    // 초기 실행
+    handleResize();
+
+    // 창 크기 변경 시 실행
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [mainRef]);
+
   return (
     <body.Wrapper variants={WrapperVariants} initial="hidden" animate="visible">
       {/* 메인  */}
-      <body.Section>
+      <body.Section ref={mainRef}>
         <main.MainArea
           variants={PosterAreaVariants}
           initial="hidden"
@@ -152,7 +175,11 @@ export const Body = () => {
         </main.MainArea>
       </body.Section>
 
-      <body.PositionArea>
+      <body.PositionArea
+        style={{
+          top: `calc(${height}px - 20px)`,
+        }}
+      >
         {/* 인사말  */}
         <body.Section {...sectionVariants}>
           <salutation.SolutionArea>
@@ -176,7 +203,6 @@ export const Body = () => {
           >
             {/* 베이비 시절 */}
             <horizontal.article
-              key={`article-${currentArticle}`}
               initial={{ opacity: 0, x: "-100%" }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
@@ -196,7 +222,6 @@ export const Body = () => {
 
             {/* 어덜트 시절 */}
             <horizontal.article
-              key={`article-${currentArticle}`}
               initial={{ opacity: 0, x: "-100%" }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}

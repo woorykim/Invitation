@@ -21,9 +21,9 @@ export const wrapperStyle = styled.div`
 
 export const CardWrap = styled.div`
   position: relative;
-  width: 70vmin;
-  height: 90vmin;
-  margin: 0 auto;
+  width: 80vmin;
+  height: 110vmin;
+  margin: 10px auto;
   text-align: center;
 `;
 

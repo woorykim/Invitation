@@ -10,15 +10,7 @@ export const HorizontalArea = styled.div`
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   position: relative;
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-  }
+  border-top: 7px dotted var(--white-color-400);
 
   &::-webkit-scrollbar {
     height: 10px;
@@ -40,12 +32,41 @@ export const article = styled(motion.div)`
   width: 100%; /* 가로 스크롤을 가로 방향으로 만들기 위해 화면 너비와 같은 값으로 설정 */
   height: 100%;
   flex: 0 0 auto;
+  padding: 20px 0;
   scroll-snap-align: start;
   display: grid;
   gap: 15px;
   overflow: hidden;
   padding-bottom: 10px;
   position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    z-index: 0;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    background: var(--custom-frenchRose-color);
+    opacity: 0.45;
+    filter: blur(35px);
+    border-radius: 50%;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 15%;
+    left: 12%;
+    z-index: 0;
+    width: 160px;
+    height: 160px;
+    flex-shrink: 0;
+    background: var(--custom-liteBlue-color);
+    opacity: 0.45;
+    filter: blur(38px);
+    border-radius: 50%;
+  }
 `;
 
 export const ArrowButton = styled.button`

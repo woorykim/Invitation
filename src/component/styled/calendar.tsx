@@ -4,12 +4,20 @@ export const CalendarArea = styled.div`
   width: 100%;
   min-width: 250px;
   height: 100%;
-  padding: 40px 25px;
+  padding: 0 25px 40px;
+`;
+
+export const CalendarTitle = styled.div`
+  width: 100%;
+  height: auto;
+  text-align: center;
+  display: grid;
+  gap: 10px;
+  margin-bottom: 26px;
 `;
 
 export const DayInnerArea = styled.div`
-  padding: 22px 0px;
-  width: 85vmin;
+  width: 100%;
   min-width: 250px;
   height: auto;
   margin: 0 auto;
@@ -21,7 +29,7 @@ export const DayInnerArea = styled.div`
 
 export const PictureArea = styled.div`
   width: 100%;
-  height: 500px;
+  height: 300px;
   padding: 20px;
   border-radius: 14px;
   position: relative;
@@ -36,7 +44,7 @@ export const Neumorphism = styled.div`
   background: #dde1e7;
   box-shadow: inset -3px -3px 7px #ffffff73,
     inset 3px 3px 5px rgba(94, 104, 121, 0.288);
-  border-radius: 5px;
+  border-radius: 30px;
 
   &::before {
     content: "";
@@ -44,7 +52,7 @@ export const Neumorphism = styled.div`
     height: calc(100% - 15%);
     box-shadow: inset -3px -3px 7px #ffffff73,
       inset 3px 3px 5px rgba(94, 104, 121, 0.288);
-    border-radius: 5px;
+    border-radius: 30px;
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -71,7 +79,6 @@ export const Picture = styled.div`
 export const SecTitleWrap = styled.div`
   display: grid;
   gap: 10px;
-
   & h1,
   & h2 {
     letter-spacing: 0.1rem;
@@ -96,14 +103,14 @@ export const SecTitleWrap = styled.div`
     font-weight: 400;
   }
   & h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--custom-liteBlue-color);
+  }
+  & h4 {
     font-size: 1.5rem;
     font-weight: 800;
-    margin-bottom: 20px;
-    color: var(--white-color-950);
-
-    & span:not() {
-      margin: 0 13px;
-    }
+    color: var(--custom-liteBlue-color);
   }
 `;
 
@@ -112,8 +119,9 @@ export const DayArea = styled.div`
   box-sizing: border-box;
   text-align: center;
   font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 1.2;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--white-color-900);
 `;
 
 export const PlaceArea = styled.div`
@@ -121,7 +129,7 @@ export const PlaceArea = styled.div`
   margin-top: 20px;
   & span {
     font-size: 1.625rem;
-    color: var(--white-color-950);
+    color: var(--custom-liteBlue-color);
     font-weight: 700;
     padding-left: 25px;
     position: relative;
@@ -156,6 +164,22 @@ export const ContentArea = styled.div`
   box-sizing: border-box;
   max-width: 380px;
   margin: 0 auto;
+`;
+
+export const MonthArea = styled.div`
+  width: 100%;
+  height: auto;
+  text-align: center;
+  display: grid;
+  gap: 4px;
+  font-weight: 700;
+
+  & h1 {
+    font-size: 3rem;
+  }
+  & p {
+    color: var(--white-color-500);
+  }
 `;
 
 export const TableArea = styled.table`

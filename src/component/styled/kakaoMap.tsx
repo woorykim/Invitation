@@ -8,9 +8,7 @@ export const MapWrapper = styled.div`
   display: grid;
   gap: 12px;
   position: relative;
-  padding: 50px;
   border-radius: 34px;
-  overflow: hidden;
   margin: 0 auto;
   text-align: center;
 `;
@@ -54,9 +52,9 @@ export const OnToWayArea = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
-  gap: 30px;
-  justify-content: center;
-  padding: 30px 0;
+  gap: 10px;
+  justify-content: left;
+  padding: 10px 0;
 `;
 export const ItemArea = styled.div`
   width: 100%;
@@ -64,7 +62,10 @@ export const ItemArea = styled.div`
   display: grid;
   gap: 10px;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
+  padding: 10px;
+  border: 1px dashed var(--custom-lavenderBlue-color);
+  border-radius: 20px;
 `;
 
 export const Round = styled.div`
@@ -75,7 +76,6 @@ export const Round = styled.div`
   padding: 8px 12px;
   font-size: 1.3rem;
   font-weight: 600;
-  margin: 0 auto;
 `;
 
 // 오시는 길 컬러
@@ -87,7 +87,7 @@ export const Describe = styled.div`
     display: grid;
     gap: 10px;
     font-size: 1.25rem;
-    text-align: center;
+    text-align: left;
   }
 
   /* 지하철 */

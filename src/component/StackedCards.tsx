@@ -5,6 +5,9 @@ import * as card from "./styled/card";
 const CARD_OFFSET = 10;
 const SCALE_FACTOR = 0.06; // 절대경로 설정
 
+/**
+ *  StackedCards Component Type
+ */
 interface StackedCardsProps {
   src: string; // 이미지 경로를 가리키는 prop
   images: { [key: string]: { src: string; alt: string } }; // 이미지 객체의 타입 정의

@@ -30,6 +30,8 @@ export const ModalContent = styled(motion.div)`
   max-width: 100%;
   width: calc(100% - 15%);
   min-width: 230px;
+  height: auto;
+  overflow: hidden;
   margin: 0 auto;
   text-align: center;
   animation: ${modalAnimation} 0.4s cubic-bezier(0, 0, 0.18, 0.99) infinite

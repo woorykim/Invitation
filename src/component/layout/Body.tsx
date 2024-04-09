@@ -6,12 +6,16 @@ import * as main from "../styled/main";
 import * as body from "../styled/body";
 import * as salutation from "../styled/salutation";
 import * as horizontal from "../styled/horizontal";
+import * as guide from "../styled/guide";
 import * as binoculars from "../styled/binoculars";
 import * as flipCard from "../styled/flipCard";
 import { StackedCards } from "../StackedCards";
 import { BlinkText } from "../BlinkText";
 import { Calendar } from "../Calendar";
 import { images } from "../../assets/images/PostImages";
+import { KakaoMap } from "../KakaoMap";
+import { Countdown } from "../Countdown";
+import { Heart } from "../Heart";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
@@ -95,8 +99,7 @@ export const Body = () => {
   const [visible, setVisible] = useState(0);
   const [back, setBack] = useState(false);
   const [height, setHeight] = useState(0);
-  const totalArticles = 3; // 전체 article 개수에 맞게 수정해주세요
-  let touchStartX = 0;
+  const targetDate = new Date("2024-05-25T17:00:00");
 
   // const nextPlease = () => {
   //   setBack(false);
@@ -203,7 +206,8 @@ export const Body = () => {
 
         {/* 달력 */}
         <body.Section {...sectionVariants}>
-          <Calendar></Calendar>
+          <Countdown targetDate={targetDate} />
+          <Calendar />
         </body.Section>
 
         {/* 가로 스크롤  */}
@@ -266,6 +270,23 @@ export const Body = () => {
               </horizontal.article>
             </AnimatePresence>
           </horizontal.HorizontalArea>
+        </body.Section>
+
+        {/* 오시는 길 */}
+        <body.Section {...sectionVariants}>
+          <guide.GuideArea>
+            <guide.Title>
+              <p>오시는길 🚶🏻‍♀️</p>
+            </guide.Title>
+            <guide.ContentArea>
+              <KakaoMap />
+            </guide.ContentArea>
+          </guide.GuideArea>
+        </body.Section>
+
+        {/* 입금 */}
+        <body.Section {...sectionVariants}>
+          <Heart />
         </body.Section>
       </body.PositionArea>
     </body.Wrapper>

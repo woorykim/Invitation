@@ -4,7 +4,6 @@ import * as kakaoMap from "./styled/kakaoMap";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
-const videoPath = process.env.PUBLIC_URL + "/common/videos/";
 
 export const KakaoMap = () => {
   const position = {

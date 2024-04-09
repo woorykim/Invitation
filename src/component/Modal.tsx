@@ -2,7 +2,9 @@ import React from "react";
 import * as modal from "./styled/modal";
 import { KakaoMap } from "./KakaoMap";
 
-/** * images type */
+/**
+ *  Modal Component Type
+ */
 interface ModalProps {
   isOpen: boolean; // 모달이 열려 있는지 여부
   onClose: () => void; // 모달 닫기 함수
@@ -32,8 +34,6 @@ export const Modal = ({ isOpen, onClose }: ModalProps) => {
               <modal.ModalButton>닫기</modal.ModalButton>
             </modal.ButtonArea>
           </modal.ModalHeader>
-
-          <KakaoMap />
         </modal.ModalContent>
       ) : null}
     </modal.ModalOverlay>

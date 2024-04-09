@@ -1,22 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import * as calendar from "./styled/calendar";
-
-// 절대경로 설정
-const imagePath = process.env.PUBLIC_URL + "/common/images/";
-const videoPath = process.env.PUBLIC_URL + "/common/videos/";
 
 export const Calendar = () => {
   return (
     <calendar.CalendarArea>
-      <calendar.DayInnerArea>
-        <calendar.PictureArea>
-          <calendar.Neumorphism></calendar.Neumorphism>
-          {/* <calendar.Picture
-            style={{
-              backgroundImage: `url(${imagePath + "card_wedding_01.png"})`,
-            }}
-          ></calendar.Picture> */}
-        </calendar.PictureArea>
+      <calendar.CalendarTitle>
         <calendar.SecTitleWrap>
           <h2>
             <span>
@@ -33,17 +21,52 @@ export const Calendar = () => {
               <span>D</span>
               <span>I</span>
               <span>N</span>
-              <span>G</span>&nbsp;
+              <span>G</span>
               <span>D</span>
               <span>A</span>
               <span>Y</span>
-              <span>💍</span>
             </span>
           </h2>
-          <h1>5</h1>
         </calendar.SecTitleWrap>
+        <calendar.SecTitleWrap>
+          <h4>
+            <span>
+              <span>L</span>
+              <span>e</span>
+              <span>e</span>
+              <span>E</span>
+              <span>u</span>
+              <span>n</span>
+              <span>s</span>
+              <span>a</span>&nbsp;
+              <span>💗</span>&nbsp;
+              <span>K</span>
+              <span>i</span>
+              <span>m</span>
+              <span>W</span>
+              <span>o</span>
+              <span>o</span>
+              <span>r</span>
+              <span>y</span>
+            </span>
+          </h4>
+        </calendar.SecTitleWrap>
+      </calendar.CalendarTitle>
+      <calendar.DayInnerArea>
+        <calendar.PictureArea>
+          <calendar.Neumorphism></calendar.Neumorphism>
+          {/* <calendar.Picture
+            style={{
+              backgroundImage: `url(${imagePath + "card_wedding_01.png"})`,
+            }}
+          ></calendar.Picture> */}
+        </calendar.PictureArea>
 
         <calendar.ContentArea>
+          <calendar.MonthArea>
+            <h1>5</h1>
+            <p>May</p>
+          </calendar.MonthArea>
           <calendar.TableArea>
             <thead>
               <tr>
@@ -112,8 +135,9 @@ export const Calendar = () => {
           </calendar.PlaceArea>
           <calendar.DayArea>
             <p>
-              2024년 5월 25일 <br />
-              토요일 오후 5시
+              2024년 5월 25일 (토)
+              <br />
+              오후 5시
             </p>
           </calendar.DayArea>
         </calendar.ContentArea>

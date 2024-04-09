@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Variants } from "framer-motion";
+import { AnimatePresence, Variants } from "framer-motion";
+import { animate } from "popmotion";
 
 import * as main from "../styled/main";
 import * as body from "../styled/body";
@@ -10,7 +11,6 @@ import * as flipCard from "../styled/flipCard";
 import { StackedCards } from "../StackedCards";
 import { BlinkText } from "../BlinkText";
 import { Calendar } from "../Calendar";
-import { KakaoMap } from "../KakaoMap";
 import { images } from "../../assets/images/PostImages";
 
 // 절대경로 설정
@@ -18,6 +18,8 @@ const imagePath = process.env.PUBLIC_URL + "/common/images/";
 const videoPath = process.env.PUBLIC_URL + "/common/videos/";
 
 /** * Framer motion Variants */
+
+// 섹션
 const WrapperVariants: Variants = {
   hidden: {
     opacity: 0,
@@ -63,43 +65,48 @@ const ItemVariants: Variants = {
   }),
 };
 
+// 스와이프
+const SwipeVariants: Variants = {
+  entry: (back: boolean) => ({
+    x: back ? -500 : 500,
+    opacity: 0,
+    scale: 0,
+  }),
+  center: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { duration: 0.5 },
+  },
+  exit: (back: boolean) => ({
+    x: back ? 500 : -500,
+    opacity: 0,
+    scale: 0,
+    transition: { duration: 0.5 },
+  }),
+};
+
 /**
   @title Body Components
 */
 export const Body = () => {
-  const [currentArticle, setCurrentArticle] = useState(0);
   const mainRef = useRef(null);
+  const articleRef = useRef(null);
+  const [visible, setVisible] = useState(0);
+  const [back, setBack] = useState(false);
   const [height, setHeight] = useState(0);
   const totalArticles = 3; // 전체 article 개수에 맞게 수정해주세요
   let touchStartX = 0;
 
-  console.log(height);
-
-  // Handle Events
-  const handleSwipeStart = (event: React.TouchEvent | React.MouseEvent) => {
-    if ("touches" in event) {
-      // 터치의 시작점 좌표를 저장합니다.
-      touchStartX = event.touches[0].clientX;
-    } else {
-      // 마우스의 시작점 좌표를 저장합니다.
-      touchStartX = event.clientX;
-    }
-  };
-
-  const handleSwipeEnd = (event: React.TouchEvent) => {
-    // 터치의 끝점 좌표를 저장합니다.
-    const touchEndX = event.changedTouches[0].clientX;
-
-    // 스와이프 방향을 계산합니다.
-    const deltaX = touchEndX - touchStartX;
-
-    // 스와이프가 충분히 발생했을 때, 다음 article로 이동합니다.
-    if (deltaX > 50) {
-      // 예시로 50 픽셀 이상 스와이프할 때 다음 article로 이동하는 조건을 추가합니다.
-      setCurrentArticle((prevArticle) =>
-        Math.min(prevArticle + 1, totalArticles - 1)
-      );
-    }
+  // const nextPlease = () => {
+  //   setBack(false);
+  //   setVisible((prev) =>
+  //     prev === images.length - 1 ? images.length - 1 : prev + 1
+  //   );
+  // };
+  const prevPlease = () => {
+    setBack(true);
+    setVisible((prev) => (prev === 0 ? 0 : prev - 1));
   };
 
   useEffect(() => {
@@ -201,62 +208,63 @@ export const Body = () => {
 
         {/* 가로 스크롤  */}
         <body.Section {...sectionVariants}>
-          <horizontal.HorizontalArea
-            onTouchStart={handleSwipeStart}
-            onTouchEnd={handleSwipeEnd}
-          >
-            {/* 베이비 시절 */}
-            <horizontal.article
-              initial={{ opacity: 0, x: "-100%" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <horizontal.TitleWrapper>
-                <horizontal.TitleArea>
-                  <h4>ABOUT Life </h4>
-                  <h1>Baby days</h1>
-                </horizontal.TitleArea>
-                <horizontal.ChipArea>
-                  <horizontal.Chip>1994 & 1992</horizontal.Chip>
-                </horizontal.ChipArea>
-              </horizontal.TitleWrapper>
+          <horizontal.HorizontalArea>
+            <AnimatePresence>
+              {/* 베이비 시절 */}
+              <horizontal.article
+                ref={articleRef}
+                initial={{ opacity: 0, x: "-100%" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <horizontal.TitleWrapper>
+                  <horizontal.TitleArea>
+                    <h4>ABOUT Life </h4>
+                    <h1>Baby days</h1>
+                  </horizontal.TitleArea>
+                  <horizontal.ChipArea>
+                    <horizontal.Chip>1994 & 1992</horizontal.Chip>
+                  </horizontal.ChipArea>
+                </horizontal.TitleWrapper>
 
-              <StackedCards src={imagePath} images={images.baby_images} />
-            </horizontal.article>
+                <StackedCards src={imagePath} images={images.baby_images} />
+              </horizontal.article>
 
-            {/* 어덜트 시절 */}
-            <horizontal.article
-              initial={{ opacity: 0, x: "-100%" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <horizontal.TitleWrapper>
-                <horizontal.TitleArea>
-                  <h4>ABOUT Life </h4>
-                  <h1>Adult days</h1>
-                </horizontal.TitleArea>
-                <horizontal.ChipArea>
-                  <horizontal.Chip>2013 & 2015</horizontal.Chip>
-                </horizontal.ChipArea>
-              </horizontal.TitleWrapper>
+              {/* 어덜트 시절 */}
+              <horizontal.article
+                ref={articleRef}
+                initial={{ opacity: 0, x: "-100%" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <horizontal.TitleWrapper>
+                  <horizontal.TitleArea>
+                    <h4>ABOUT Life </h4>
+                    <h1>Adult days</h1>
+                  </horizontal.TitleArea>
+                  <horizontal.ChipArea>
+                    <horizontal.Chip>2013 & 2015</horizontal.Chip>
+                  </horizontal.ChipArea>
+                </horizontal.TitleWrapper>
 
-              <StackedCards src={imagePath} images={images.adult_images} />
-            </horizontal.article>
+                <StackedCards src={imagePath} images={images.adult_images} />
+              </horizontal.article>
 
-            {/* 함께  */}
-            <horizontal.article>
-              <horizontal.TitleWrapper>
-                <horizontal.TitleArea>
-                  <h4>ABOUT Life </h4>
-                  <h1>Together days</h1>
-                </horizontal.TitleArea>
-                <horizontal.ChipArea>
-                  <horizontal.Chip>함께한 날들</horizontal.Chip>
-                </horizontal.ChipArea>
-              </horizontal.TitleWrapper>
+              {/* 함께  */}
+              <horizontal.article>
+                <horizontal.TitleWrapper>
+                  <horizontal.TitleArea>
+                    <h4>ABOUT Life </h4>
+                    <h1>Together days</h1>
+                  </horizontal.TitleArea>
+                  <horizontal.ChipArea>
+                    <horizontal.Chip>함께한 날들</horizontal.Chip>
+                  </horizontal.ChipArea>
+                </horizontal.TitleWrapper>
 
-              <StackedCards src={imagePath} images={images.together_images} />
-            </horizontal.article>
+                <StackedCards src={imagePath} images={images.together_images} />
+              </horizontal.article>
+            </AnimatePresence>
           </horizontal.HorizontalArea>
         </body.Section>
       </body.PositionArea>

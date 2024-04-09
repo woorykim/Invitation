@@ -9,7 +9,7 @@ export const CalendarArea = styled.div`
 
 export const DayInnerArea = styled.div`
   padding: 22px 0px;
-  width: 80vmin;
+  width: 85vmin;
   min-width: 250px;
   height: auto;
   margin: 0 auto;
@@ -40,8 +40,8 @@ export const Neumorphism = styled.div`
 
   &::before {
     content: "";
-    width: calc(100% - 16%);
-    height: calc(100% - 13%);
+    width: calc(100% - 15%);
+    height: calc(100% - 15%);
     box-shadow: inset -3px -3px 7px #ffffff73,
       inset 3px 3px 5px rgba(94, 104, 121, 0.288);
     border-radius: 5px;
@@ -51,7 +51,7 @@ export const Neumorphism = styled.div`
     left: 50%;
     background-image: url("/Invitation/common/images/card_wedding_01.png");
     background-size: cover;
-    background-position: top center;
+    background-position: center;
     background-repeat: no-repeat;
   }
 `;

@@ -4,13 +4,14 @@ import { Variants } from "framer-motion";
 import * as main from "../styled/main";
 import * as body from "../styled/body";
 import * as salutation from "../styled/salutation";
-import * as binoculars from "../styled/binoculars";
 import * as horizontal from "../styled/horizontal";
+import * as binoculars from "../styled/binoculars";
 import * as flipCard from "../styled/flipCard";
 import { StackedCards } from "../StackedCards";
 import { BlinkText } from "../BlinkText";
-import { images } from "../../assets/images/PostImages";
 import { Calendar } from "../Calendar";
+import { KakaoMap } from "../KakaoMap";
+import { images } from "../../assets/images/PostImages";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
@@ -135,7 +136,10 @@ export const Body = () => {
             initial="initial"
             animate="visible"
           >
-            <main.PosterImage src={imagePath + "we.jpg"} alt="" />
+            <main.PosterImage
+              src={imagePath + "card_wedding_03.png"}
+              alt="wedding_woory_eunsa"
+            />
           </main.PosterArea>
 
           <main.StickerArea>
@@ -181,7 +185,7 @@ export const Body = () => {
         }}
       >
         {/* 인사말  */}
-        <body.Section {...sectionVariants}>
+        <body.Section>
           <salutation.SolutionArea>
             <salutation.Title>
               <p>INVITATION</p>
@@ -256,8 +260,12 @@ export const Body = () => {
           </horizontal.HorizontalArea>
         </body.Section>
 
-        {/* 비디오 */}
         <body.Section {...sectionVariants}>
+          <h1>test</h1>
+          <KakaoMap></KakaoMap>
+        </body.Section>
+        {/* 비디오 */}
+        {/* <body.Section {...sectionVariants}>
           <binoculars.VideoArea>
             <binoculars.MovieTopBottom>
               <binoculars.BinocularsArea
@@ -270,7 +278,7 @@ export const Body = () => {
               </binoculars.Video>
             </binoculars.MovieTopBottom>
           </binoculars.VideoArea>
-        </body.Section>
+        </body.Section> */}
       </body.PositionArea>
     </body.Wrapper>
   );

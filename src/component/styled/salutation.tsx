@@ -29,7 +29,7 @@ export const Title = styled.div`
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.1875rem;
-  color: var(--custom-darkBeige-color);
+  color: var(--custom-liteBlue-color);
 `;
 
 export const Img = styled.img`

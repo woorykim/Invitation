@@ -1,10 +1,22 @@
 import React, { useState } from "react";
 import * as calendar from "./styled/calendar";
 
+// 절대경로 설정
+const imagePath = process.env.PUBLIC_URL + "/common/images/";
+const videoPath = process.env.PUBLIC_URL + "/common/videos/";
+
 export const Calendar = () => {
   return (
     <calendar.CalendarArea>
       <calendar.DayInnerArea>
+        <calendar.PictureArea>
+          <calendar.Neumorphism></calendar.Neumorphism>
+          {/* <calendar.Picture
+            style={{
+              backgroundImage: `url(${imagePath + "card_wedding_01.png"})`,
+            }}
+          ></calendar.Picture> */}
+        </calendar.PictureArea>
         <calendar.SecTitleWrap>
           <h2>
             <span>
@@ -25,6 +37,7 @@ export const Calendar = () => {
               <span>D</span>
               <span>A</span>
               <span>Y</span>
+              <span>💍</span>
             </span>
           </h2>
           <h1>5</h1>
@@ -98,7 +111,10 @@ export const Calendar = () => {
             <span>서울 아만티호텔 * 아만티홀</span>
           </calendar.PlaceArea>
           <calendar.DayArea>
-            <p>2024년 5월 25일 토요일 오후 5시</p>
+            <p>
+              2024년 5월 25일 <br />
+              토요일 오후 5시
+            </p>
           </calendar.DayArea>
         </calendar.ContentArea>
       </calendar.DayInnerArea>

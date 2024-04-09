@@ -5,7 +5,7 @@ export const MainArea = styled(motion.div)`
   width: 100%;
   height: auto;
   position: relative;
-  padding: 14vmin 14vmin 24vmin 14vmin;
+  padding: 14vmin 16vmin 22vmin 16vmin;
 
   &::before {
     content: "";
@@ -26,8 +26,8 @@ export const MainArea = styled(motion.div)`
 `;
 
 export const PosterArea = styled(motion.div)`
-  width: 70vmin;
-  height: 90vmin;
+  width: 100%;
+  height: 100vmin;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -45,7 +45,7 @@ export const PosterArea = styled(motion.div)`
 
 export const PosterImage = styled(motion.img)`
   object-fit: cover;
-  width: 114vmin;
+  width: 100%;
   height: 100%;
 `;
 
@@ -58,7 +58,7 @@ export const NameArea = styled(motion.p)`
   justify-content: center;
   position: absolute;
   bottom: 18%;
-  left: 15%;
+  left: 20%;
   font-size: 1.6rem;
 
   & span {
@@ -100,8 +100,8 @@ export const PosterTitleArea = styled(motion.div)`
   display: grid;
   gap: 10px;
   position: absolute;
-  left: 8%;
-  top: 20%;
+  left: 7%;
+  top: 10%;
 
   & p {
     line-height: 120%;
@@ -131,8 +131,8 @@ export const DrawingArea = styled(motion.div)`
   width: 30vmin;
   height: auto;
   position: absolute;
-  right: 50px;
-  bottom: 75px;
+  right: 44px;
+  bottom: 46px;
 `;
 
 export const DrawingImage = styled(motion.img)`
@@ -140,6 +140,7 @@ export const DrawingImage = styled(motion.img)`
   height: auto;
   transform: rotate(20deg);
   z-index: 1;
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.4);
 `;
 
 export const DrawingImageDesc = styled(motion.p)`

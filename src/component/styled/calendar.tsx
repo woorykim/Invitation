@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 export const CalendarArea = styled.section`
   width: 100%;
+  min-width: 250px;
   height: 100%;
   padding: 40px 0;
 `;
@@ -9,6 +10,7 @@ export const CalendarArea = styled.section`
 export const DayInnerArea = styled.div`
   padding: 22px 0px;
   width: 80vmin;
+  min-width: 250px;
   height: auto;
   margin: 0 auto;
   border-radius: 43px;
@@ -17,14 +19,63 @@ export const DayInnerArea = styled.div`
   overflow: hidden;
 `;
 
+export const PictureArea = styled.div`
+  width: 100%;
+  height: 500px;
+  padding: 20px;
+  border-radius: 14px;
+  position: relative;
+`;
+
+export const Neumorphism = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #dde1e7;
+  box-shadow: inset -3px -3px 7px #ffffff73,
+    inset 3px 3px 5px rgba(94, 104, 121, 0.288);
+  border-radius: 5px;
+
+  &::before {
+    content: "";
+    width: calc(100% - 16%);
+    height: calc(100% - 13%);
+    box-shadow: inset -3px -3px 7px #ffffff73,
+      inset 3px 3px 5px rgba(94, 104, 121, 0.288);
+    border-radius: 5px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-image: url("/Invitation/common/images/card_wedding_01.png");
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+`;
+
+export const Picture = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 81px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
 export const SecTitleWrap = styled.div`
   display: grid;
   gap: 10px;
 
   & h1,
   & h2 {
-    letter-spacing: 0.1em;
-    text-indent: 0.1em;
+    letter-spacing: 0.1rem;
+    text-indent: 0.1rem;
     text-align: center;
 
     display: -webkit-box;
@@ -48,7 +99,7 @@ export const SecTitleWrap = styled.div`
     font-size: 1.5rem;
     font-weight: 800;
     margin-bottom: 20px;
-    color: var(--custom-darkBeige-color);
+    color: var(--white-color-950);
 
     & span:not() {
       margin: 0 13px;
@@ -60,14 +111,16 @@ export const DayArea = styled.div`
   padding: 6px 50px;
   box-sizing: border-box;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
 `;
 
 export const PlaceArea = styled.div`
   position: relative;
   margin-top: 20px;
   & span {
-    font-size: 1.5rem;
+    font-size: 1.625rem;
     color: var(--white-color-950);
     font-weight: 700;
     padding-left: 25px;
@@ -76,10 +129,10 @@ export const PlaceArea = styled.div`
     &::before {
       content: "";
       display: block;
-      width: 16px;
-      height: 19px;
+      width: 24px;
+      height: 24px;
       background: url("/Invitation/common/images/icon_location.png") no-repeat 0
-        0 / 16px auto;
+        0 / 20px auto;
       position: absolute;
       top: 50%;
       left: 0;
@@ -130,7 +183,7 @@ export const TableArea = styled.table`
     & span::before {
       content: "25";
       display: block;
-      background-color: var(--custom-darkBeige-color);
+      background-color: var(--custom-liteBlue-color);
       width: 30px;
       height: 30px;
       border-radius: 50%;

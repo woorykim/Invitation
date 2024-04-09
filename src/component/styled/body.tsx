@@ -5,13 +5,17 @@ export const Wrapper = styled(motion.div)`
   width: 100%;
   height: 100%;
   grid-template-columns: repeat(1, 1fr);
-  /* background-color: #F4C2C2; */
   background-color: var(--white-color-100);
-
   & > section {
-    opacity: 1;
     overflow: hidden;
     position: fixed;
+  }
+  & > section,
+  & > div > section:nth-child(1) {
+    opacity: 1;
+  }
+  & > div > section:nth-child(3) {
+    padding: 0 25px;
   }
 `;
 
@@ -31,6 +35,5 @@ export const PositionArea = styled(motion.div)`
   position: relative;
   width: 100%;
   height: 100%;
-  top: 635px;
   box-shadow: -22px -34px 33px rgb(0, 0, 0, 0.4);
 `;

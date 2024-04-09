@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 
 export const HeaderWrapper = styled(motion.header)`
-  width: 100%;
+  width: fit-content;
   height: auto;
   background: transparent;
   display: flex;
@@ -10,29 +10,26 @@ export const HeaderWrapper = styled(motion.header)`
   align-items: center;
   z-index: 999;
   position: fixed;
-  top: 0;
-  right: 10px;
+  top: 10px;
+  right: 20px;
 `;
 export const MapArea = styled(motion.div)<{ $scroll: number }>`
   padding: 10px;
-  width: fit-content;
-  background: var(--custom-frenchRose-color);
+  width: 100%;
+  height: 100%;
+  background-color: var(--custom-blue-color);
+
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s;
   border-radius: 3.125rem;
 
   ${({ $scroll }) =>
     $scroll > 20 &&
     css`
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.2) 0%,
-        rgba(255, 255, 255, 0.1) 50%,
-        rgba(255, 255, 255, 0.05) 100%
-      );
-      transition: 0.3s;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: var(--custom-liteBlue-color);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      box-shadow: 3px 10px 18px rgba(0, 0, 0, 0.2);
     `};
 `;
 

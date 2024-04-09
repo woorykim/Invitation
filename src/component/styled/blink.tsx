@@ -78,7 +78,7 @@ export const Name = styled(motion.p)`
 
   & span {
     font-weight: 600;
-    color: var(--custom-darkBeige-color);
+    color: var(--custom-liteBlue-color);
     margin-right: 4px;
   }
   & span:nth-child(2) {

@@ -1,27 +1,36 @@
 import React, { ReactNode, createContext, useEffect, useState } from "react";
 
-/**
- * @title Modal Provider children type
- */
-interface ModalContextProps {
-  children: ReactNode;
+interface ModalContextType {
+  isModalOpen: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+  scrollToElement: () => void;
 }
 
 /**
  * @title Modal Context 생성
  */
-export const ModalContext = createContext({
+export const ModalContext = createContext<ModalContextType>({
   isModalOpen: false,
   openModal: () => {},
   closeModal: () => {},
+  scrollToElement: () => {},
 });
 
+/**
+ * @title Modal Provider children type
+ */
+interface ModalProviderProps {
+  children: ReactNode;
+}
 /**
  * @title Modal Provider
  * @description Modal open시 body scroll hidden
  */
-export const ModalProvider: React.FC<ModalContextProps> = ({ children }) => {
+export const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [scrollableElement, setScrollableElement] =
+    useState<HTMLElement | null>(null);
 
   /** * 모달 Open */
   const openModal = () => {
@@ -42,8 +51,24 @@ export const ModalProvider: React.FC<ModalContextProps> = ({ children }) => {
     }
   }, [isModalOpen]);
 
+  /** * Scroll */
+  useEffect(() => {
+    const element = document.getElementById("scrollable-element");
+    setScrollableElement(element);
+  }, []);
+
+  const scrollToElement = () => {
+    if (scrollableElement) {
+      scrollableElement.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <ModalContext.Provider value={{ isModalOpen, openModal, closeModal }}>
+    <ModalContext.Provider
+      value={{ isModalOpen, openModal, closeModal, scrollToElement }}
+    >
       {children}
     </ModalContext.Provider>
   );

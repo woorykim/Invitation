@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import scrollbar from "smooth-scrollbar";
 import {
   AnimatePresence,
   Variants,
@@ -18,11 +19,17 @@ import { StackedCards } from "../StackedCards";
 import { BlinkText } from "../BlinkText";
 import { Calendar } from "../Calendar";
 import { KakaoMap } from "../KakaoMap";
+import { Navigation } from "../Navigation";
 import { Countdown } from "../Countdown";
 import { Heart } from "../Heart";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
+// smooth scroll 설정
+const element = document.querySelector("#smooth-scroll");
+if (element instanceof HTMLElement) {
+  scrollbar.init(element);
+}
 
 // 섹션
 const WrapperVariants: Variants = {
@@ -75,7 +82,8 @@ const ItemVariants: Variants = {
 */
 export const Body = () => {
   const targetDate = new Date("2024-05-25T17:00:00");
-  const mainRef = useRef(null);
+  const mainRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
   const [visibleIndex, setVisibleIndex] = useState(0);
@@ -84,6 +92,7 @@ export const Body = () => {
   const totalArticles = StackedCardImages.info.length; // 전체 아티클 수
   const x = useMotionValue(xValue);
 
+  // 이미지 다음
   const showNextSlide = () => {
     setDirection("next");
     setVisibleIndex((prevIndex) =>
@@ -91,6 +100,7 @@ export const Body = () => {
     );
   };
 
+  // 이미지 이전
   const showPrevSlide = () => {
     setDirection("prev");
     setVisibleIndex((prevIndex) =>
@@ -120,6 +130,13 @@ export const Body = () => {
     }),
   };
 
+  // 해당 영역으로 이동
+  const scrollToElement = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   useEffect(() => {
     const handleResize = () => {
       if (mainRef.current) {
@@ -138,7 +155,12 @@ export const Body = () => {
   }, []);
 
   return (
-    <body.Wrapper variants={WrapperVariants} initial="hidden" animate="visible">
+    <body.Wrapper
+      id="smooth-scroll"
+      variants={WrapperVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {/* 메인  */}
       <body.Section ref={mainRef}>
         <main.MainArea
@@ -284,13 +306,14 @@ export const Body = () => {
         </body.Section>
 
         {/* 오시는 길 */}
-        <body.Section {...sectionVariants}>
+        <body.Section {...sectionVariants} id="scrollable-element">
           <guide.GuideArea>
             <guide.Title>
               <p>오시는길 🚶🏻‍♀️</p>
             </guide.Title>
             <guide.ContentArea>
               <KakaoMap />
+              <Navigation />
             </guide.ContentArea>
           </guide.GuideArea>
         </body.Section>

@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { isIOS, isAndroid, isBrowser, isTablet } from "react-device-detect";
+import * as navigation from "./styled/navigation";
 
-import { motion } from "framer-motion";
+// 절대경로 설정
+const imagePath = process.env.PUBLIC_URL + "/common/images/";
 
 /**
  *  Navigation Component Type
@@ -30,17 +32,6 @@ export const Navigation = () => {
       window.location.replace(
         `https://map.kakao.com/link/map/아만티호텔서울,${position.lat},${position.lng}`
       );
-
-      // // SDK 초기화
-      // window.Kakao.init("%REACT_APP_KAKAO_JAVASCRIPT_KEY_WEB%");
-
-      // // SDK를 통한 호출
-      // await window.Kakao.Navi.start({
-      //   name: "아만티호텔서울", //상호명
-      //   x: position.lng,
-      //   y: position.lat,
-      //   coordType: "wgs84",
-      // });
     }
   };
 
@@ -66,41 +57,50 @@ export const Navigation = () => {
 
   /** * 네이버 호출 */
   const opeNaverNavi = async () => {
-    // 인코딩
-    const incoding = encodeURIComponent(
-      `nmap://route/public?dlat=${position.lat}&dlng=${position.lng}&dname="아만티호텔서울"`
-    );
+    const url = `kakaomap://route?sp=${position.lat},${position.lng}&ep=${position.lat},${position.lng}&by=CAR`;
 
-    window.location.replace(incoding);
+    const androidStoreURL = `intent://place?lat=${position.lat}&lng=${position.lng}&name="아만티호텔"#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;end`;
+
+    if (isIOS || isTablet) {
+      window.location.replace(url);
+    } else if (isAndroid) {
+      window.location.replace(androidStoreURL);
+    } else if (isBrowser) {
+      window.location.replace(`https://naver.me/58H36b85`);
+    }
   };
 
   return (
-    <div>
-      <motion.button
+    <navigation.navigationArea>
+      <navigation.navigationButton
         onClick={openKakaoNavi}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
         style={{ cursor: "pointer", textDecoration: "none" }}
       >
-        카카오맵
-      </motion.button>
+        <img src={imagePath + "icon_navi_kakao.svg"} alt="Kakao_Navigation" />
+        <p>카카오맵</p>
+      </navigation.navigationButton>
 
-      <motion.button
+      <navigation.navigationButton
         onClick={openTmapNavi}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
         style={{ cursor: "pointer", textDecoration: "none" }}
       >
-        티맵
-      </motion.button>
-      <motion.button
+        <img src={imagePath + "icon_navi_tmap.svg"} alt="Tmap_Navigation" />
+        <p>티맵</p>
+      </navigation.navigationButton>
+
+      <navigation.navigationButton
         onClick={opeNaverNavi}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.9 }}
         style={{ cursor: "pointer", textDecoration: "none" }}
       >
-        네이버
-      </motion.button>
-    </div>
+        <img src={imagePath + "icon_navi_naver.svg"} alt="naver_Navigation" />
+        <p>네이버지도</p>
+      </navigation.navigationButton>
+    </navigation.navigationArea>
   );
 };

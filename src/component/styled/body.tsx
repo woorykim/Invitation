@@ -16,7 +16,7 @@ export const Wrapper = styled(motion.div)`
     opacity: 1;
   }
   & > div > section:nth-child(3) {
-    padding: 40px 25px;
+    padding: 40px 0;
   }
 `;
 

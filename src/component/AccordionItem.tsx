@@ -10,7 +10,12 @@ const imagePath = process.env.PUBLIC_URL + "/common/images/";
 interface AccordionItemProps {
   title: string;
   content: {
-    [key: string]: { name: string; bank: string; accountNumber: string };
+    [key: string]: {
+      name: string;
+      bank: string;
+      accountNumber: string;
+      pay?: string | null | undefined; // pay 속성이 string, null, undefined 중 하나일 수 있음을 명시
+    };
   };
 }
 
@@ -21,23 +26,38 @@ export const AccordionItem: React.FC<AccordionItemProps> = (props) => {
   const { title, content } = props;
   const [isOpen, setIsOpen] = useState(false);
 
-  // 클릭 이벤트 핸들러
+  /** 클릭 이벤트 핸들러 */
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
 
-  // 계좌번호 클릭하여 복사하는 함수
+  /**
+   * 계좌번호 클릭하여 복사
+   * @param string accountNumber
+   */
   const copyAccountNumber = (accountNumber: string) => {
     navigator.clipboard
       .writeText(accountNumber)
       .then(() => {
-        console.log("Account number copied to clipboard:", accountNumber);
         alert("클립보드에 복사되었습니다.");
         // 복사가 성공했을 때 원하는 동작을 추가할 수 있습니다.
       })
       .catch((error) => {
         console.error("Error copying account number to clipboard:", error);
       });
+  };
+
+  /**
+   * 카카오페이 링크로 이동
+   */
+  const kakaoPayClick = (pay: string | null | undefined) => {
+    console.log(pay);
+
+    if (pay !== undefined || pay !== null) return;
+
+    if (pay) {
+      window.location.href = pay;
+    }
   };
 
   return (
@@ -47,21 +67,33 @@ export const AccordionItem: React.FC<AccordionItemProps> = (props) => {
         <accordion.ArrowImage src={imagePath + "arrow.svg"} $open={isOpen} />
       </accordion.AccordionTitle>
       <accordion.AccordionContent $open={isOpen}>
-        {Object.keys(content).map((key) => (
+        {Object.entries(content).map(([key, item]) => (
           <accordion.LiArea key={key}>
-            <accordion.AccountName>
-              <p>예금주 :</p>
-              <p>{content[key].name}</p>
-            </accordion.AccountName>
-            <accordion.AccountArea>
-              <p>{content[key].bank} :</p>
-              <p>{content[key].accountNumber}</p>
+            <accordion.AccountNameArea>
+              <accordion.AccountName>
+                <p>예금주 :</p>
+                <p>{item.name}</p>
+              </accordion.AccountName>
+              {item.pay && (
+                <accordion.copyButton
+                  className="kakaoPay"
+                  onClick={() => kakaoPayClick(item.pay)}
+                >
+                  Pay 송금하기
+                </accordion.copyButton>
+              )}
+            </accordion.AccountNameArea>
+            <accordion.AccountBankArea>
+              <accordion.AccountBank>
+                <p>{item.bank} :</p>
+                <p>{item.accountNumber}</p>
+              </accordion.AccountBank>
               <accordion.copyButton
-                onClick={() => copyAccountNumber(content[key].accountNumber)}
+                onClick={() => copyAccountNumber(item.accountNumber)}
               >
                 복사하기
               </accordion.copyButton>
-            </accordion.AccountArea>
+            </accordion.AccountBankArea>
           </accordion.LiArea>
         ))}
       </accordion.AccordionContent>

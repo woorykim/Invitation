@@ -28,16 +28,17 @@ interface BankInfo {
   name: string;
   bank: string;
   accountNumber: string;
+  pay?: string | null;
 }
 export interface AccountNumberProps {
   woory: {
-    bride: BankInfo;
-    bride_mother: BankInfo;
-    bride_father: BankInfo;
+    bride: BankInfo & { pay: string | null };
+    bride_mother: BankInfo & { pay: string | null };
+    bride_father: BankInfo & { pay: string | null };
   };
   eunsa: {
-    bridegroom: BankInfo;
-    bridegroom_mother: BankInfo;
-    bridegroom_father: BankInfo;
+    bridegroom: BankInfo & { pay: string | null };
+    bridegroom_mother: BankInfo & { pay: string | null };
+    bridegroom_father: BankInfo & { pay: string | null };
   };
 }

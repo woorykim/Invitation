@@ -52,7 +52,6 @@ export const AccordionContent = styled(motion.div)<{ $open: boolean }>`
 export const LiArea = styled(motion.div)`
   display: grid;
   gap: 10px;
-  justify-content: left;
   align-items: center;
   text-align: left;
   padding: 10px;
@@ -63,6 +62,12 @@ export const LiArea = styled(motion.div)`
     border-bottom: none;
   }
 `;
+export const AccountNameArea = styled(motion.div)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const AccountName = styled(motion.div)`
   display: flex;
   gap: 3px;
@@ -73,9 +78,16 @@ export const AccountName = styled(motion.div)`
     font-weight: 800;
   }
 `;
-export const AccountArea = styled(motion.div)`
+
+export const AccountBankArea = styled(motion.div)`
   display: flex;
-  gap: 3x;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const AccountBank = styled(motion.div)`
+  display: flex;
+  gap: 3px;
   justify-content: center;
   align-items: center;
   font-size: 1.125rem;
@@ -96,4 +108,9 @@ export const copyButton = styled(motion.button)`
   text-align: center;
   justify-content: center;
   margin-left: 20px;
+  cursor: pointer;
+  &.kakaoPay {
+    background-color: #ffeb00;
+    color: var(--white-color-950);
+  }
 `;

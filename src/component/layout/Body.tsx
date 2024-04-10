@@ -88,14 +88,14 @@ export const Body = () => {
   const showNextSlide = () => {
     setDirection("next");
     setVisibleIndex((prevIndex) =>
-      prevIndex === StackedCardImages.info.length - 1 ? 0 : prevIndex + 1
+      prevIndex === totalArticles - 1 ? 0 : prevIndex + 1
     );
   };
 
   const showPrevSlide = () => {
     setDirection("prev");
     setVisibleIndex((prevIndex) =>
-      prevIndex === 0 ? StackedCardImages.info.length - 1 : prevIndex - 1
+      prevIndex === 0 ? totalArticles - 1 : prevIndex - 1
     );
   };
 
@@ -104,20 +104,20 @@ export const Body = () => {
     hidden: (direction: "next" | "prev") => ({
       x: direction === "next" ? width : -width,
       opacity: 0,
-      scale: 0.8,
-      transition: { duration: 0.4 },
+      scale: 0.9,
+      transition: { duration: 0.3 },
     }),
     visible: {
       x: 0,
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.4 },
+      transition: { duration: 0.3 },
     },
     exit: (direction: "next" | "prev") => ({
       x: direction === "next" ? -width : width,
       opacity: 0,
-      scale: 0.8,
-      transition: { duration: 0.4 },
+      scale: 0.9,
+      transition: { duration: 0.3 },
     }),
   };
 
@@ -204,7 +204,7 @@ export const Body = () => {
 
       <body.PositionArea
         style={{
-          top: `calc(${height}px - 20px)`,
+          top: `calc(${height}px - 140px)`,
         }}
       >
         {/* 인사말  */}
@@ -236,7 +236,7 @@ export const Body = () => {
               type="button"
               className="next"
               onClick={showNextSlide}
-              disabled={visibleIndex === StackedCardImages.info.length - 1}
+              disabled={visibleIndex === totalArticles - 1}
             ></button>
           </horizontal.ButtonArea>
           <horizontal.HorizontalArea ref={mainRef}>

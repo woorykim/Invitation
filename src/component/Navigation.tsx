@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { isAndroid, isIOS } from "react-device-detect";
+import { isIOS, isAndroid, isBrowser, isTablet } from "react-device-detect";
 
 import { motion } from "framer-motion";
 
@@ -25,35 +25,39 @@ export const Navigation = () => {
   /** * 카카오맵 호출 */
   const openKakaoNavi = async () => {
     if (window.Kakao) {
-      // SDK 초기화
-      window.Kakao.init("%REACT_APP_KAKAO_JAVASCRIPT_KEY_WEB%");
+      if (isIOS || isAndroid || isTablet) {
+        // SDK 초기화
+        window.Kakao.init("%REACT_APP_KAKAO_JAVASCRIPT_KEY_WEB%");
 
-      // SDK를 통한 호출
-      await window.Kakao.Navi.start({
-        name: "아만티호텔서울", //상호명
-        x: position.lng, // 경도
-        y: position.lat, // 위도
-        coordType: "wgs84",
-      });
-    } else {
-      console.error("Kakao SDK is not loaded.");
+        // SDK를 통한 호출
+        await window.Kakao.Navi.start({
+          name: "아만티호텔서울", //상호명
+          x: position.lng, // 경도
+          y: position.lat, // 위도
+          coordType: "wgs84",
+        });
+      } else if (isBrowser) {
+        console.error("Kakao SDK is not loaded.");
+        return false;
+      }
     }
   };
 
   /** * 티맵 호출 */
   const openTmapNavi = async () => {
-    if (window.Tmapv2) {
-      if (isIOS) {
-        // 기기가 ios 인 경우
-        window.location.replace(
-          `tmap://route?rGoName="아만티호텔서울"&rGoX=${position.lng}&rGoY=${position.lat}`
-        );
-      } else if (isAndroid) {
-        // 기기가 android 인 경우
-        window.location.replace(
-          `tmap://route?referrer=com.skt.Tmap&goalx=${position.lng}&goaly=${position.lat}&goalname="아만티호텔서울"`
-        );
-      }
+    if (isIOS) {
+      // 기기가 ios 인 경우
+      window.location.replace(
+        `tmap://route?rGoName="아만티호텔서울"&rGoX=${position.lng}&rGoY=${position.lat}`
+      );
+    } else if (isAndroid) {
+      // 기기가 android 인 경우
+      window.location.replace(
+        `tmap://route?referrer=com.skt.Tmap&goalx=${position.lng}&goaly=${position.lat}&goalname="아만티호텔서울"`
+      );
+    } else if (isTablet || isBrowser) {
+      console.error("Tmap SDK is not loaded.");
+      return false;
     }
   };
 

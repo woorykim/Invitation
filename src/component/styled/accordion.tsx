@@ -76,7 +76,7 @@ export const AccountName = styled(motion.div)`
 export const AccountArea = styled(motion.div)`
   display: flex;
   gap: 3x;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
   font-size: 1.125rem;
   & p:nth-child(1) {

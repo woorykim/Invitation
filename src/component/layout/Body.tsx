@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { AnimatePresence, Variants } from "framer-motion";
-import { animate } from "popmotion";
+import {
+  AnimatePresence,
+  Variants,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
 
+import { StackedCardImages } from "../../assets/images/PostImages";
 import * as main from "../styled/main";
 import * as body from "../styled/body";
 import * as salutation from "../styled/salutation";
@@ -12,7 +17,6 @@ import * as flipCard from "../styled/flipCard";
 import { StackedCards } from "../StackedCards";
 import { BlinkText } from "../BlinkText";
 import { Calendar } from "../Calendar";
-import { images } from "../../assets/images/PostImages";
 import { KakaoMap } from "../KakaoMap";
 import { Countdown } from "../Countdown";
 import { Heart } from "../Heart";
@@ -20,8 +24,6 @@ import { Heart } from "../Heart";
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
 const videoPath = process.env.PUBLIC_URL + "/common/videos/";
-
-/** * Framer motion Variants */
 
 // 섹션
 const WrapperVariants: Variants = {
@@ -69,67 +71,78 @@ const ItemVariants: Variants = {
   }),
 };
 
-// 스와이프
-const SwipeVariants: Variants = {
-  entry: (back: boolean) => ({
-    x: back ? -500 : 500,
-    opacity: 0,
-    scale: 0,
-  }),
-  center: {
-    opacity: 1,
-    x: 0,
-    scale: 1,
-    transition: { duration: 0.5 },
-  },
-  exit: (back: boolean) => ({
-    x: back ? 500 : -500,
-    opacity: 0,
-    scale: 0,
-    transition: { duration: 0.5 },
-  }),
-};
-
 /**
   @title Body Components
 */
 export const Body = () => {
-  const mainRef = useRef(null);
-  const articleRef = useRef(null);
-  const [visible, setVisible] = useState(0);
-  const [back, setBack] = useState(false);
-  const [height, setHeight] = useState(0);
   const targetDate = new Date("2024-05-25T17:00:00");
+  const mainRef = useRef(null);
+  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(0);
+  const [visibleIndex, setVisibleIndex] = useState(0);
+  const [direction, setDirection] = useState<"next" | "prev">("next");
+  const [xValue, setXValue] = useState(0);
+  const totalArticles = StackedCardImages.info.length; // 전체 아티클 수
+  const x = useMotionValue(xValue);
 
-  // const nextPlease = () => {
-  //   setBack(false);
-  //   setVisible((prev) =>
-  //     prev === images.length - 1 ? images.length - 1 : prev + 1
-  //   );
-  // };
-  const prevPlease = () => {
-    setBack(true);
-    setVisible((prev) => (prev === 0 ? 0 : prev - 1));
+  const showNextSlide = () => {
+    setDirection("next");
+    setVisibleIndex((prevIndex) =>
+      prevIndex === StackedCardImages.info.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const showPrevSlide = () => {
+    setDirection("prev");
+    setVisibleIndex((prevIndex) =>
+      prevIndex === 0 ? StackedCardImages.info.length - 1 : prevIndex - 1
+    );
+  };
+
+  // 스와이프
+  const slideVariants = {
+    hidden: (direction: "next" | "prev") => ({
+      x: direction === "next" ? width : -width,
+      opacity: 0,
+      scale: 0.8,
+      transition: { duration: 0.4 },
+    }),
+    visible: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.4 },
+    },
+    exit: (direction: "next" | "prev") => ({
+      x: direction === "next" ? -width : width,
+      opacity: 0,
+      scale: 0.8,
+      transition: { duration: 0.4 },
+    }),
   };
 
   useEffect(() => {
     const handleResize = () => {
       if (mainRef.current) {
-        const { offsetHeight } = mainRef.current;
+        const { offsetHeight, offsetWidth } = mainRef.current;
         setHeight(offsetHeight);
+        setWidth(offsetWidth);
       }
     };
 
-    // 초기 실행
-    handleResize();
-
-    // 창 크기 변경 시 실행
-    window.addEventListener("resize", handleResize);
+    handleResize(); // 초기 실행
+    window.addEventListener("resize", handleResize); // 창 크기 변경 시 실행
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [mainRef]);
+  }, []);
+
+  useEffect(() => {
+    x.onChange(() => {
+      console.log(x.get());
+    });
+  }, [x]);
 
   return (
     <body.Wrapper variants={WrapperVariants} initial="hidden" animate="visible">
@@ -212,62 +225,67 @@ export const Body = () => {
 
         {/* 가로 스크롤  */}
         <body.Section {...sectionVariants}>
-          <horizontal.HorizontalArea>
-            <AnimatePresence>
-              {/* 베이비 시절 */}
-              <horizontal.article
-                ref={articleRef}
-                initial={{ opacity: 0, x: "-100%" }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <horizontal.TitleWrapper>
-                  <horizontal.TitleArea>
-                    <h4>ABOUT Life </h4>
-                    <h1>Baby days</h1>
-                  </horizontal.TitleArea>
-                  <horizontal.ChipArea>
-                    <horizontal.Chip>1994 & 1992</horizontal.Chip>
-                  </horizontal.ChipArea>
-                </horizontal.TitleWrapper>
-
-                <StackedCards src={imagePath} images={images.baby_images} />
-              </horizontal.article>
-
-              {/* 어덜트 시절 */}
-              <horizontal.article
-                ref={articleRef}
-                initial={{ opacity: 0, x: "-100%" }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <horizontal.TitleWrapper>
-                  <horizontal.TitleArea>
-                    <h4>ABOUT Life </h4>
-                    <h1>Adult days</h1>
-                  </horizontal.TitleArea>
-                  <horizontal.ChipArea>
-                    <horizontal.Chip>2013 & 2015</horizontal.Chip>
-                  </horizontal.ChipArea>
-                </horizontal.TitleWrapper>
-
-                <StackedCards src={imagePath} images={images.adult_images} />
-              </horizontal.article>
-
-              {/* 함께  */}
-              <horizontal.article>
-                <horizontal.TitleWrapper>
-                  <horizontal.TitleArea>
-                    <h4>ABOUT Life </h4>
-                    <h1>Together days</h1>
-                  </horizontal.TitleArea>
-                  <horizontal.ChipArea>
-                    <horizontal.Chip>함께한 날들</horizontal.Chip>
-                  </horizontal.ChipArea>
-                </horizontal.TitleWrapper>
-
-                <StackedCards src={imagePath} images={images.together_images} />
-              </horizontal.article>
+          <horizontal.ButtonArea>
+            <button
+              type="button"
+              className="prev"
+              onClick={showPrevSlide}
+              disabled={visibleIndex === 0}
+            ></button>
+            <button
+              type="button"
+              className="next"
+              onClick={showNextSlide}
+              disabled={visibleIndex === StackedCardImages.info.length - 1}
+            ></button>
+          </horizontal.ButtonArea>
+          <horizontal.HorizontalArea ref={mainRef}>
+            <AnimatePresence custom={direction}>
+              {StackedCardImages.info.map((info, index) =>
+                index === visibleIndex ? (
+                  <horizontal.article
+                    key={index}
+                    variants={slideVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    custom={direction}
+                    transition={{ bounceStiffness: 300, bounceDamping: 50 }}
+                    dragTransition={{ bounceStiffness: 300, bounceDamping: 50 }}
+                    dragConstraints={{
+                      left: -window.innerWidth,
+                      right: window.innerWidth,
+                    }}
+                    dragElastic={false}
+                    onDrag={(event, info) => {
+                      setXValue(info.point.x);
+                      x.set(info.offset.x);
+                    }}
+                    onDragEnd={(event, info) => {
+                      if (
+                        info.offset.x < 0 &&
+                        Math.abs(info.offset.x) >= window.innerWidth / 4
+                      ) {
+                        showNextSlide();
+                      } else if (
+                        info.offset.x > 0 &&
+                        info.offset.x >= window.innerWidth / 4
+                      ) {
+                        showPrevSlide();
+                      }
+                      setXValue(info.point.x);
+                      x.set(info.point.x);
+                    }}
+                  >
+                    <StackedCards
+                      title={info.title}
+                      chip={info.chip}
+                      src={process.env.PUBLIC_URL + "/common/images/"}
+                      images={Object.values(StackedCardImages.images)[index]} // 이미지 배열 사용
+                    />
+                  </horizontal.article>
+                ) : null
+              )}
             </AnimatePresence>
           </horizontal.HorizontalArea>
         </body.Section>

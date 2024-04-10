@@ -5,7 +5,7 @@ export const HeartArea = styled(motion.div)`
   width: 100%;
   max-width: 100%;
   height: auto;
-  padding: 40px 35px;
+  padding: 40px 10px;
   margin: 0 auto;
   position: relative;
   text-align: center;

@@ -3,12 +3,21 @@
  */
 export interface ImageProps {
   [key: string]: {
-    [key: string]: {
-      name: string;
-      src: string;
-      alt: string;
-    };
+    name: string;
+    src: string;
+    alt: string;
   };
+}
+
+export interface InfoProps {
+  title: string;
+  chip: string;
+}
+
+export interface ImagesProps {
+  baby_images: ImageProps;
+  adult_images: ImageProps;
+  together_images: ImageProps;
 }
 
 /**

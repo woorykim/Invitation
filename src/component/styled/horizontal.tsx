@@ -6,9 +6,7 @@ export const HorizontalArea = styled.div`
   max-width: 100%;
   height: auto;
   display: flex;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
+  overflow: hidden;
   position: relative;
   border-top: 7px dotted var(--white-color-400);
 
@@ -25,6 +23,36 @@ export const HorizontalArea = styled.div`
     background-color: var(--white-color-400);
     border-radius: 10px;
     box-shadow: inset 0px 0px 5px white;
+  }
+`;
+
+export const ButtonArea = styled.div`
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  z-index: 997;
+  transform: translate(-50%, -60%);
+  width: 100%;
+  height: auto;
+  justify-content: space-between;
+  display: flex;
+
+  & button {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+    background-image: url("/Invitation/common/images/arrow.svg");
+    background-size: cover;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+  }
+  & button:first-child {
+    transform: rotate(90deg);
+  }
+  & button:last-child {
+    transform: rotate(-90deg);
   }
 `;
 

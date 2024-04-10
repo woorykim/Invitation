@@ -1,7 +1,93 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-// TODO: 마진 위 아래값 처리 (하단 overflow 되는 현상 처리
+export const article = styled(motion.div)`
+  width: 100%; /* 가로 스크롤을 가로 방향으로 만들기 위해 화면 너비와 같은 값으로 설정 */
+  height: 100%;
+  flex: 0 0 auto;
+  padding: 20px 0;
+  scroll-snap-align: start;
+  display: grid;
+  gap: 15px;
+  overflow: hidden;
+  padding-bottom: 10px;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    z-index: 0;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    background: var(--custom-frenchRose-color);
+    opacity: 0.45;
+    filter: blur(35px);
+    border-radius: 50%;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 15%;
+    left: 12%;
+    z-index: 0;
+    width: 160px;
+    height: 160px;
+    flex-shrink: 0;
+    background: var(--custom-liteBlue-color);
+    opacity: 0.45;
+    filter: blur(38px);
+    border-radius: 50%;
+  }
+`;
+
+export const TitleWrapper = styled.div`
+  width: 100%;
+  height: auto;
+`;
+
+export const ChipArea = styled.div`
+  width: fit-content;
+  height: auto;
+  padding: 10px;
+  background: var(--white-color-200);
+  border-radius: 25px;
+  margin: 0 auto;
+  box-shadow: inset -12px 10px 14px #ffffff73,
+    inset 3px 3px 5px rgba(94, 104, 121, 0.288);
+`;
+
+export const Chip = styled.p`
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.0081rem;
+`;
+
+export const TitleArea = styled.div`
+  padding: 10px 0;
+  display: grid;
+  gap: 4px;
+  text-align: center;
+
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    font-weight: 900;
+  }
+
+  & h4 {
+    font-size: 1.125rem;
+    color: var(--white-color-950);
+  }
+  & h1 {
+    font-size: 2.5rem;
+  }
+`;
+
 export const wrapperStyle = styled.div`
   margin: 5.5% 0;
   width: 100%;

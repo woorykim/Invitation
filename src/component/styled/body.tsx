@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 export const Wrapper = styled(motion.div)`
+  overscroll-behavior-y: none;
   width: 100%;
   height: 100%;
   grid-template-columns: repeat(1, 1fr);
@@ -31,6 +32,7 @@ export const Section = styled(motion.section)`
 `;
 
 export const PositionArea = styled(motion.div)`
+  overscroll-behavior-y: none;
   background: var(--white-color-100);
   position: relative;
   width: 100%;

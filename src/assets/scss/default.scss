@@ -152,6 +152,7 @@ input:-webkit-autofill {
 }
 
 html {
+  overscroll-behavior: none; //스크롤 체인을 방지,
   font-size: var(--basic-size); // 10px
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;

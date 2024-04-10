@@ -40,11 +40,8 @@ export const HeadBar: React.FC<IHeadBarProps> = (props) => {
       >
         <Weather />
       </header.WeatherArea>
-      {/* 
-      <Navigation
-        title="티맵"
-        scheme={`tmap://search?name=더빅토리아웨딩파티`}
-      /> */}
+
+      <Navigation />
 
       <header.RightArea>
         <header.AudioArea

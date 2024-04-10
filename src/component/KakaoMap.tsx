@@ -7,8 +7,8 @@ const imagePath = process.env.PUBLIC_URL + "/common/images/";
 
 export const KakaoMap = () => {
   const position = {
-    lat: 37.55715071108653,
     lng: 126.9186859271572,
+    lat: 37.55715071108653,
   };
 
   return (

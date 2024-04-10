@@ -12,14 +12,14 @@ interface WeatherData {
 
 export const Weather = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  const API_KEY = "d7cbad81ceb1098ce8859e486c762645";
+  const WEATHER_KEY = `${process.env.REACT_APP_WEATHER_KEY}`;
 
   // API 가져오기
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${API_KEY}`
+          `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${WEATHER_KEY}`
         );
         const data = await response.json();
         setWeatherData(data);

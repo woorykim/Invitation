@@ -23,7 +23,6 @@ export interface ImagesProps {
 /**
  * @title 계좌번호 타입 설정
  */
-
 interface BankInfo {
   name: string;
   bank: string;
@@ -41,4 +40,10 @@ export interface AccountNumberProps {
     bridegroom_mother: BankInfo & { pay: string | null };
     bridegroom_father: BankInfo & { pay: string | null };
   };
+}
+/**
+ * @title 날씨 타입 설정
+ */
+export interface WeatherDescKoItem {
+  [key: number]: string;
 }

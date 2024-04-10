@@ -50,14 +50,10 @@ export const AccordionItem: React.FC<AccordionItemProps> = (props) => {
   /**
    * 카카오페이 링크로 이동
    */
+
   const kakaoPayClick = (pay: string | null | undefined) => {
-    console.log(pay);
-
-    if (pay !== undefined || pay !== null) return;
-
-    if (pay) {
-      window.location.href = pay;
-    }
+    if (pay === null || pay === undefined) return; // pay가 null 또는 undefined인 경우 함수를 종료
+    window.location.href = pay; // 현재 창에서 해당 URL로 이동
   };
 
   return (

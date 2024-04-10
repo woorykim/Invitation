@@ -2,23 +2,45 @@ import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 
 export const HeaderWrapper = styled(motion.header)`
-  width: fit-content;
+  width: 100%;
   height: auto;
   background: transparent;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
   z-index: 999;
   position: fixed;
-  top: 10px;
-  right: 20px;
+  top: 0;
 `;
+
+export const WeatherArea = styled(motion.div)<{ $scroll: number }>`
+  padding: 2px 10px;
+  width: fit-content;
+  height: auto;
+  transition: background 0.3s;
+  border-radius: 3.125rem;
+  background-color: var(--custom-blue-color);
+  p {
+    color: var(--white-color-100);
+  }
+  ${({ $scroll }) =>
+    $scroll > 20 &&
+    css`
+      background-color: transparent;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(2px);
+      box-shadow: 3px 10px 18px rgba(0, 0, 0, 0.2);
+      p {
+        color: var(--white-color-950);
+      }
+    `};
+`;
+
 export const MapArea = styled(motion.div)<{ $scroll: number }>`
   padding: 10px;
-  width: 100%;
+  width: fit-content;
   height: 100%;
   background-color: var(--custom-blue-color);
-
   cursor: pointer;
   transition: background 0.3s;
   border-radius: 3.125rem;

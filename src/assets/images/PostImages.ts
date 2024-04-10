@@ -7,15 +7,15 @@ import { ImagesProps, InfoProps } from "../../types/ImageTypes";
 export const StackedCardImages: { info: InfoProps[]; images: ImagesProps } = {
   info: [
     {
-      title: "Baby days",
+      title: "👶🏻 Baby days",
       chip: "1994 & 1992",
     },
     {
-      title: "Adult days",
+      title: "🧑🏻‍🎓 Adult days",
       chip: "2013 & 2015",
     },
     {
-      title: "Together days",
+      title: "👩🏻‍🤝‍👨🏻 Together days",
       chip: "함께한 날들",
     },
   ],

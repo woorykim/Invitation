@@ -5,6 +5,7 @@ import { Modal } from "../Modal";
 import * as header from "../styled/header";
 import { Weather } from "../Weather";
 import { AudioPlayer } from "../AudioPlayer";
+import { Navigation } from "../Navigation";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
@@ -39,6 +40,12 @@ export const HeadBar: React.FC<IHeadBarProps> = (props) => {
       >
         <Weather />
       </header.WeatherArea>
+      {/* 
+      <Navigation
+        title="티맵"
+        scheme={`tmap://search?name=더빅토리아웨딩파티`}
+      /> */}
+
       <header.RightArea>
         <header.AudioArea
           $scroll={scroll}

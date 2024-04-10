@@ -137,12 +137,6 @@ export const Body = () => {
     };
   }, []);
 
-  useEffect(() => {
-    x.onChange(() => {
-      console.log(x.get());
-    });
-  }, [x]);
-
   return (
     <body.Wrapper variants={WrapperVariants} initial="hidden" animate="visible">
       {/* 메인  */}

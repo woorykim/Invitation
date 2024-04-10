@@ -33,7 +33,7 @@ export const Weather = () => {
 
   // 데이터를 가져오지 않았을 때, 처리
   if (!weatherData) {
-    return <div>Loading...</div>;
+    return <div>...</div>;
   }
   const { name, weather, main } = weatherData;
 

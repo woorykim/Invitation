@@ -23,7 +23,6 @@ import { Heart } from "../Heart";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
-const videoPath = process.env.PUBLIC_URL + "/common/videos/";
 
 // 섹션
 const WrapperVariants: Variants = {

@@ -30,9 +30,11 @@ export const HeartBorder = styled(motion.div)`
   width: calc(100% - 10%);
   height: auto;
   margin: 0 auto;
-  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.4);
+  background: #8eb0e54d;
+  box-shadow: inset 0px 4px 9px rgba(0, 0, 0, 0.4);
   border-radius: 40px;
   padding: 30px;
   display: grid;
   gap: 20px;
+  border: 4px dotted var(--custom-liteBlue-color);
 `;

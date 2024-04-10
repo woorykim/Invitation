@@ -9,19 +9,20 @@ export const AccordionItem = styled(motion.div)`
 export const AccordionTitle = styled(motion.div)`
   width: 100%;
   height: auto;
-  padding: 6px 10px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
   font-weight: 800;
   border: 1px solid var(--custom-liteBlue-color);
   border-radius: 8px 8px 0 0;
   cursor: pointer;
 
   &:nth-child(1) {
-    color: var(--custom-blue-color);
-    background-color: var(--custom-aliceblue-color);
+    color: var(--white-color-100);
+    background-color: var(--custom-liteBlue-color);
   }
   &:nth-child(2) {
     color: var(--main-color);
@@ -40,9 +41,10 @@ export const ArrowImage = styled(motion.img)<{ $open: boolean }>`
 
 export const AccordionContent = styled(motion.div)<{ $open: boolean }>`
   width: 100%;
-  height: ${(props) => (props.$open ? "auto" : 0)};
-  visibility: ${(props) => (props.$open ? "visible" : "hidden")};
-  transition: height 0.35s ease, visibility 0.1s ease-in-out;
+  height: ${(props) => (props.$open ? "260px" : 0)};
+  background: var(--white-color-100);
+  overflow: hidden;
+  transition: height 0.35s ease-in-out;
   border: 1px solid var(--white-color-500);
   border-radius: 0 0 8px 8px;
   display: grid;

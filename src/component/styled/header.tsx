@@ -27,12 +27,37 @@ export const WeatherArea = styled(motion.div)<{ $scroll: number }>`
     $scroll > 20 &&
     css`
       background-color: transparent;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(2px);
+      backdrop-filter: contrast(0.5);
+      -webkit-backdrop-filter: contrast(0.5);
       box-shadow: 3px 10px 18px rgba(0, 0, 0, 0.2);
       p {
-        color: var(--white-color-950);
+        color: var(--white-color-100);
       }
+    `};
+`;
+
+export const RightArea = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+`;
+
+export const AudioArea = styled(motion.div)<{ $scroll: number }>`
+  padding: 9px 5px;
+  width: fit-content;
+  height: 100%;
+  background-color: var(--custom-blue-color);
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 3.125rem;
+  ${({ $scroll }) =>
+    $scroll > 20 &&
+    css`
+      background: var(--custom-liteBlue-color);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      box-shadow: 3px 10px 18px rgba(0, 0, 0, 0.2);
     `};
 `;
 

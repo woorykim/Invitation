@@ -16,8 +16,12 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <script
+      async
+      src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=%REACT_APP_TMAP_JAVASCRIPT_KEY_WEB%"
+    ></script>
+    <script
       type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=%REACT_APP_JAVASCRIPT_KEY_WEB%"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=%REACT_APP_JAVASCRIPT_KEY_TEST%"
     ></script>
     <title>초대합니다💞</title>
 
@@ -26,19 +30,6 @@
       integrity="sha384-kDljxUXHaJ9xAb2AzRd59KxjrFjzHa5TAoFQ6GbYTCAG0bjM55XohjjDT7tDDC01"
       crossorigin="anonymous"
     ></script>
-
-    <script>
-      // SDK 초기화
-      window.Kakao.init("%REACT_APP_JAVASCRIPT_KEY_WEB%");
-
-      // SDK를 통한 호출
-      window.Kakao.Navi.start({
-        name: "아만티호텔서울", //상호명
-        x: 126.9186859271572, // 경도
-        y: 37.55715071108653, // 위도
-        coordType: "wgs84",
-      });
-    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

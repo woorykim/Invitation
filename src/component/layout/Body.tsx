@@ -157,15 +157,13 @@ export const Body = () => {
             animate="visible"
           >
             <main.PosterImage
-              src={imagePath + "card_together_06.png"}
+              src={imagePath + "card_wedding_03.webp"}
               alt="wedding_woory_eunsa"
             />
           </main.PosterArea>
 
           <main.StickerArea>
-            <main.NameArea>
-              <span>*</span> Moon & Ite
-            </main.NameArea>
+            <main.NameArea>{/* <span>*</span> Moon & Ite */}</main.NameArea>
             <main.MaskingTapeImage
               src={imagePath + "main_maskingTape.png"}
               alt=""
@@ -187,10 +185,10 @@ export const Body = () => {
               initial="initial"
               animate="visible"
             >
-              <main.DrawingImage src={imagePath + "main_drawing.png"} alt="" />
               <main.DrawingImageDesc>
                 우리 & 은사 <br /> 달이 & 이트
               </main.DrawingImageDesc>
+              <main.DrawingImage src={imagePath + "main_drawing.png"} alt="" />
             </main.DrawingArea>
           </main.StickerArea>
         </main.MainArea>
@@ -204,7 +202,7 @@ export const Body = () => {
         {/* 인사말  */}
         <body.Section>
           <salutation.SolutionArea>
-            <blink.Content>👰🏻🤍🤵🏻‍♂️</blink.Content>
+            <blink.Content style={{ fontSize: "25px" }}>👰🏻🤍🤵🏻‍♂️</blink.Content>
             <salutation.Title>
               <p>INVITATION</p>
             </salutation.Title>

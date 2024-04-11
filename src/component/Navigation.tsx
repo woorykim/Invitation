@@ -29,21 +29,19 @@ export const Navigation = () => {
 
   /** * 카카오맵 호출 */
   const openKakaoNavi = async () => {
-    if (window.Kakao) {
-      if (isIOS) {
-        if (isAppInstalled("kakaomap://")) {
-          window.open(
-            `kakaomap://search?q=아만티호텔&p=${position.lat},${position.lng}`
-          );
-        }
-      } else if (isAndroid) {
+    if (isIOS) {
+      if (isAppInstalled("kakaomap://")) {
         window.open(
           `kakaomap://search?q=아만티호텔&p=${position.lat},${position.lng}`
         );
-      } else if (isBrowser || isTablet) {
-        alert("카카오맵으로 이동합니다");
-        window.open(`https://map.kakao.com/link/search/아만티호텔서울`);
       }
+    } else if (isAndroid) {
+      window.open(
+        `kakaomap://search?q=아만티호텔&p=${position.lat},${position.lng}`
+      );
+    } else if (isBrowser || isTablet) {
+      alert("카카오맵으로 이동합니다");
+      window.open(`https://map.kakao.com/link/search/아만티호텔서울`);
     }
   };
 

@@ -57,9 +57,9 @@ export const Neumorphism = styled.div`
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    background-image: url("/Invitation/common/images/card_wedding_01.png");
-    background-size: cover;
-    background-position: center;
+    background-image: url(/Invitation/common/images/card_wedding_01.webp);
+    background-size: 110%;
+    background-position: 50% 70%;
     background-repeat: no-repeat;
   }
 `;

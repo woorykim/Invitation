@@ -7,6 +7,10 @@ import { ImagesProps, InfoProps } from "../../types/ImageTypes";
 export const StackedCardImages: { info: InfoProps[]; images: ImagesProps } = {
   info: [
     {
+      title: "🤵🏻‍♂️👰🏻 Wedding days",
+      chip: "새로운 시작",
+    },
+    {
       title: "👶🏻 Baby days",
       chip: "1994 & 1992",
     },
@@ -19,20 +23,16 @@ export const StackedCardImages: { info: InfoProps[]; images: ImagesProps } = {
       chip: "~ 2024 ",
     },
     {
-      title: "🐈 Cats days 🐈‍⬛",
-      chip: "달, 이트와 함께",
-    },
-    {
       title: "👩🏻‍🤝‍👨🏻 Together days",
       chip: "첫 만남 * 2016 ~ ",
     },
     {
-      title: "👩🏻‍🤝‍👨🏻 Together days",
-      chip: "함께한 순간 * ~ 2024 ",
+      title: "🐈 Cats days 🐈‍⬛",
+      chip: "달, 이트와 함께",
     },
     {
-      title: "🤵🏻‍♂️👰🏻 Wedding days",
-      chip: "새로운 시작",
+      title: "🌞 Now days",
+      chip: "현재",
     },
   ],
   images: {

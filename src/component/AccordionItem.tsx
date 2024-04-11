@@ -53,7 +53,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = (props) => {
 
   const kakaoPayClick = (pay: string | null | undefined) => {
     if (pay === null || pay === undefined) return; // pay가 null 또는 undefined인 경우 함수를 종료
-    window.location.href = pay; // 현재 창에서 해당 URL로 이동
+    window.open(pay); // 현재 창에서 해당 URL로 이동
   };
 
   return (
@@ -87,7 +87,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = (props) => {
               <accordion.copyButton
                 onClick={() => copyAccountNumber(item.accountNumber)}
               >
-                복사하기
+                복사
               </accordion.copyButton>
             </accordion.AccountBankArea>
           </accordion.LiArea>

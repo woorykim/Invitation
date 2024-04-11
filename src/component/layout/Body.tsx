@@ -1,15 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import scrollbar from "smooth-scrollbar";
-import {
-  AnimatePresence,
-  Variants,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+import { AnimatePresence, Variants, useMotionValue } from "framer-motion";
 
 import { StackedCardImages } from "../../assets/images/PostImages";
 import * as main from "../styled/main";
 import * as body from "../styled/body";
+import * as blink from "../styled/blink";
 import * as salutation from "../styled/salutation";
 import * as horizontal from "../styled/horizontal";
 import * as guide from "../styled/guide";
@@ -83,7 +79,6 @@ const ItemVariants: Variants = {
 export const Body = () => {
   const targetDate = new Date("2024-05-25T17:00:00");
   const mainRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
   const [visibleIndex, setVisibleIndex] = useState(0);
@@ -113,7 +108,7 @@ export const Body = () => {
     hidden: (direction: "next" | "prev") => ({
       x: direction === "next" ? width : -width,
       opacity: 0,
-      scale: 0.9,
+      scale: 0.8,
       transition: { duration: 0.3 },
     }),
     visible: {
@@ -122,19 +117,6 @@ export const Body = () => {
       scale: 1,
       transition: { duration: 0.3 },
     },
-    exit: (direction: "next" | "prev") => ({
-      x: direction === "next" ? -width : width,
-      opacity: 0,
-      scale: 0.9,
-      transition: { duration: 0.3 },
-    }),
-  };
-
-  // 해당 영역으로 이동
-  const scrollToElement = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: "smooth" });
-    }
   };
 
   useEffect(() => {
@@ -175,7 +157,7 @@ export const Body = () => {
             animate="visible"
           >
             <main.PosterImage
-              src={imagePath + "card_wedding_03.png"}
+              src={imagePath + "card_wedding_04.webp"}
               alt="wedding_woory_eunsa"
             />
           </main.PosterArea>
@@ -225,6 +207,7 @@ export const Body = () => {
         {/* 인사말  */}
         <body.Section>
           <salutation.SolutionArea>
+            <blink.Content>👰🏻🤍🤵🏻‍♂️</blink.Content>
             <salutation.Title>
               <p>INVITATION</p>
             </salutation.Title>
@@ -240,20 +223,19 @@ export const Body = () => {
 
         {/* 가로 스크롤  */}
         <body.Section {...sectionVariants}>
-          <horizontal.ButtonArea>
-            <button
-              type="button"
-              className="prev"
-              onClick={showPrevSlide}
-              disabled={visibleIndex === 0}
-            ></button>
-            <button
-              type="button"
-              className="next"
-              onClick={showNextSlide}
-              disabled={visibleIndex === totalArticles - 1}
-            ></button>
-          </horizontal.ButtonArea>
+          <horizontal.Button
+            type="button"
+            className="prev"
+            onClick={showPrevSlide}
+            disabled={visibleIndex === 0}
+          ></horizontal.Button>
+          <horizontal.Button
+            type="button"
+            className="next"
+            onClick={showNextSlide}
+            disabled={visibleIndex === totalArticles - 1}
+          ></horizontal.Button>
+
           <horizontal.HorizontalArea ref={mainRef}>
             <AnimatePresence custom={direction}>
               {StackedCardImages.info.map((info, index) =>

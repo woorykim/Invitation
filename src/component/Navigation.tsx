@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { isIOS, isAndroid, isBrowser, isTablet } from "react-device-detect";
 import * as navigation from "./styled/navigation";
+import { isAppInstalled, showNavigationCheck } from "./util/NavigationCheck";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
@@ -29,44 +30,78 @@ export const Navigation = () => {
   /** * 카카오맵 호출 */
   const openKakaoNavi = async () => {
     if (window.Kakao) {
-      window.location.replace(
-        `https://map.kakao.com/link/map/아만티호텔서울,${position.lat},${position.lng}`
-      );
+      if (isIOS) {
+        if (isAppInstalled("kakaomap://")) {
+          window.open(
+            `kakaomap://search?q=아만티호텔&p=${position.lat},${position.lng}`
+          );
+        }
+      } else if (isAndroid) {
+        window.open(
+          `kakaomap://search?q=아만티호텔&p=${position.lat},${position.lng}`
+        );
+      } else if (isBrowser || isTablet) {
+        alert("카카오맵으로 이동합니다");
+        window.open(`https://map.kakao.com/link/search/아만티호텔서울`);
+      }
     }
   };
 
   /** * 티맵 호출 */
   const openTmapNavi = async () => {
-    if (isIOS || isTablet) {
+    if (isIOS) {
       // 기기가 ios 인 경우
-      //tmap://?rGoName=위치이름&rGoY=위도&rGoX=경도
-      window.location.replace(
-        `tmap://route?rGoName="아만티호텔서울"&rGoX=${position.lng}&rGoY=${position.lat}`
-      );
-    } else if (isAndroid || isTablet) {
-      // 기기가 android 인 경우
-      window.location.replace(
-        `tmap://route?referrer=com.skt.Tmap&goalx=${position.lat}&goaly=${position.lng}&goalname=%REACT_APP_NAVER_JAVASCRIPT_KEY_WEB%`
-      );
+      if (isAppInstalled("tmap://")) {
+        window.open(
+          `tmap://route?rGoName=아만티호텔서울&rGoX=${position.lng}&rGoY=${position.lat}`
+        );
+      } else {
+        window.open(`https://apps.apple.com/app/id431589174`);
+      }
+    } else if (isAndroid) {
+      // Android 플랫폼인 경우
+      if (isAppInstalled("com.skt.Tmap")) {
+        window.open(
+          `tmap://route?referrer=com.skt.Tmap&goalx=${position.lng}&goaly=${position.lat}&goalname=아만티호텔서울`
+        );
+      } else {
+        window.open(
+          `https://play.google.com/store/apps/details?id=com.skt.tmap.ku&hl=ko-KR`
+        );
+      }
     } else if (isBrowser || isTablet) {
-      window.location.replace(
-        `https://www.tmap.co.kr/my_tmap/my_map_tip/map_tip.do#`
-      );
+      // 브라우저나 태블릿 플랫폼인 경우
+      alert("티맵으로 이동합니다");
+      window.open(`https://www.tmap.co.kr/my_tmap/my_map_tip/map_tip.do#`);
     }
   };
 
   /** * 네이버 호출 */
   const opeNaverNavi = async () => {
-    const url = `kakaomap://route?sp=${position.lat},${position.lng}&ep=${position.lat},${position.lng}&by=CAR`;
-
-    const androidStoreURL = `intent://place?lat=${position.lat}&lng=${position.lng}&name="아만티호텔"#Intent;scheme=nmap;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.nmap;end`;
-
-    if (isIOS || isTablet) {
-      window.location.replace(url);
+    if (isIOS) {
+      if (isAppInstalled("nmap://")) {
+        window.open(
+          `nmap://navigation?dlat=$${position.lat}&dlng=${position.lng}&dname=아만티호텔`
+        );
+      } else {
+        window.open(
+          `https://apps.apple.com/kr/app/naver-map-navigation/id311867728`
+        );
+      }
     } else if (isAndroid) {
-      window.location.replace(androidStoreURL);
-    } else if (isBrowser) {
-      window.location.replace(`https://naver.me/58H36b85`);
+      if (isAppInstalled("nmap://")) {
+        window.open(
+          `nmap://navigation?dlat=$${position.lat}&dlng=${position.lng}&dname=아만티호텔`
+        );
+      } else {
+        window.open(
+          `https://play.google.com/store/apps/details?id=com.nhn.android.nmap&hl=ko-KR`
+        );
+      }
+    } else if (isBrowser || isTablet) {
+      // 브라우저나 태블릿 플랫폼인 경우
+      alert("네이버지도로 이동합니다");
+      window.open(`https://map.naver.com/p/search/아만티호텔`);
     }
   };
 

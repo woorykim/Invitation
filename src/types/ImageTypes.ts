@@ -16,8 +16,12 @@ export interface InfoProps {
 
 export interface ImagesProps {
   baby_images: ImageProps;
-  adult_images: ImageProps;
-  together_images: ImageProps;
+  adult_images_01: ImageProps;
+  adult_images_02: ImageProps;
+  cats_images: ImageProps;
+  together_images_01: ImageProps;
+  together_images_02: ImageProps;
+  wedding_images: ImageProps;
 }
 
 /**

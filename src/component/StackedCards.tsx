@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import * as card from "./styled/card";
 
-const CARD_OFFSET = 10;
+const CARD_OFFSET = 8;
 const SCALE_FACTOR = 0.06; // 절대경로 설정
 
 /**

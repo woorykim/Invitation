@@ -13,7 +13,7 @@ export const MainArea = styled(motion.div)`
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url("/Invitation/common/images/main_background.jpeg");
+    background-image: url("/Invitation/common/images/main_background_02.svg");
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -118,13 +118,15 @@ export const PosterTitleArea = styled(motion.div)`
   & p:nth-child(3) {
     font-size: 14px !important;
     line-height: 150% !important;
+    font-weight: 500;
   }
 `;
 
 export const PosterTitle = styled(motion.p)`
   width: fit-content;
   height: auto;
-  font-size: 18px;
+  font-size: 1.25rem;
+  letter-spacing: 2px;
 `;
 
 export const DrawingArea = styled(motion.div)`

@@ -85,15 +85,10 @@ export const BlinkText = () => {
       </blink.TitleArea>
 
       <blink.ContentArea>
-        <blink.Content>사랑이 무엇인지</blink.Content>
-        <blink.Content>누군가 물어왔을 때,</blink.Content>
-        <blink.Content>망설임 없이</blink.Content>
-        <blink.Content>서로를 떠올리던</blink.Content>
-        <blink.Content>그 마음으로.</blink.Content>
-        <blink.Content>따라사로운 봄날</blink.Content>
-        <blink.Content>저희 둘, 결혼합니다</blink.Content>
+        <blink.Content>따사로운 햇볕이 </blink.Content>
+        <blink.Content>내리쬐는 봄 날에</blink.Content>
+        <blink.Content> 저희 둘, 결혼합니다.</blink.Content>
       </blink.ContentArea>
-
       <blink.NameArea>
         <blink.Name>
           <span>이창건 · 옹영신</span>의 장남 <span>이은사</span>

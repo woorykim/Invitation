@@ -26,32 +26,27 @@ export const HorizontalArea = styled.div`
   }
 `;
 
-export const ButtonArea = styled.div`
+export const Button = styled.button`
   position: absolute;
   top: 60%;
-  left: 50%;
   z-index: 997;
   transform: translate(-50%, -60%);
-  width: 100%;
-  height: auto;
-  justify-content: space-between;
-  display: flex;
+  cursor: pointer;
+  background-image: url("/Invitation/common/images/arrow.svg");
+  background-size: cover;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
 
-  & button {
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    border: none;
-    background-color: transparent;
-    background-image: url("/Invitation/common/images/arrow.svg");
-    background-size: cover;
-    background-position: 50% 0;
-    background-repeat: no-repeat;
-  }
-  & button:first-child {
+  &:nth-child(1) {
+    left: 0;
     transform: rotate(90deg);
   }
-  & button:last-child {
+  &:nth-child(2) {
+    right: 0;
     transform: rotate(-90deg);
   }
 `;

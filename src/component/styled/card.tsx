@@ -40,6 +40,32 @@ export const article = styled(motion.div)`
     filter: blur(38px);
     border-radius: 50%;
   }
+
+  & > button:nth-child(1) {
+    left: 0;
+    transform: rotate(90deg);
+  }
+  & > button:nth-child(2) {
+    right: 0;
+    transform: rotate(-90deg);
+  }
+`;
+
+export const Button = styled(motion.button)`
+  position: absolute;
+  top: 60%;
+  z-index: 997;
+  transform: translate(-50%, -60%);
+  cursor: pointer;
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+  background-image: url("/Invitation/common/images/arrow.svg");
+  background-size: cover;
+  background-position: 50% 0;
+  background-repeat: no-repeat;
 `;
 
 export const TitleWrapper = styled.div`
@@ -88,8 +114,8 @@ export const TitleArea = styled.div`
   }
 `;
 
-export const wrapperStyle = styled.div`
-  margin: 5.5% 0;
+export const wrapperStyle = styled(motion.div)`
+  margin: 8.5% 0;
   width: 100%;
   height: 100%;
   position: relative;
@@ -105,7 +131,7 @@ export const wrapperStyle = styled.div`
   }
 `;
 
-export const CardWrap = styled.div`
+export const CardWrap = styled(motion.div)`
   position: relative;
   width: 80vmin;
   height: 110vmin;

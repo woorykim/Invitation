@@ -1,5 +1,9 @@
 import { WeatherDescKoItem } from "../../types/ImageTypes";
 
+/**
+ * @title Weather api
+ * @description  Weather api - id check  한글 출력 객체
+ */
 const WeatherDescKo: WeatherDescKoItem[] = [
   { 201: "가벼운 비를 동반한 천둥구름" },
   { 200: "비를 동반한 천둥구름" },

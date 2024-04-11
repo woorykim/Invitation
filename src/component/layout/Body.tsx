@@ -157,7 +157,7 @@ export const Body = () => {
             animate="visible"
           >
             <main.PosterImage
-              src={imagePath + "card_wedding_04.webp"}
+              src={imagePath + "card_together_06.png"}
               alt="wedding_woory_eunsa"
             />
           </main.PosterArea>
@@ -179,9 +179,6 @@ export const Body = () => {
             >
               <p>Saturday May 25, 2024 </p>
               <main.PosterTitle>Memories of the Past</main.PosterTitle>
-              <main.PosterTitle>
-                귀한걸음 해주심에 <br /> 감사드립니다
-              </main.PosterTitle>
             </main.PosterTitleArea>
 
             <main.DrawingArea
@@ -201,7 +198,7 @@ export const Body = () => {
 
       <body.PositionArea
         style={{
-          top: `calc(${height}px - 140px)`,
+          top: `calc(${height}px - 180px)`,
         }}
       >
         {/* 인사말  */}

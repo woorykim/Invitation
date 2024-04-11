@@ -5,7 +5,8 @@ export const MainArea = styled(motion.div)`
   width: 100%;
   height: auto;
   position: relative;
-  padding: 14vmin 16vmin 22vmin 16vmin;
+  /* padding: 14vmin 16vmin 22vmin 16vmin; */
+  padding: 15vmin 10vmin 22vmin 10vmin;
 
   &::before {
     content: "";
@@ -13,21 +14,23 @@ export const MainArea = styled(motion.div)`
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url("/Invitation/common/images/main_background_02.svg");
+    background-image: url("/Invitation/common/images/main_background.jpeg");
     background-size: cover;
     width: 100%;
     height: 100%;
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
+    -webkit-filter: blur(6px);
+    -moz-filter: blur(6px);
+    -o-filter: blur(6px);
+    -ms-filter: blur(6px);
+    filter: blur(6px);
+    opacity: 0.8;
   }
 `;
 
 export const PosterArea = styled(motion.div)`
   width: 100%;
   height: 100vmin;
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -57,8 +60,9 @@ export const NameArea = styled(motion.p)`
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: 18%;
-  left: 20%;
+  bottom: 16%;
+  left: 17%;
+  transform: translate(-17%, -16%);
   font-size: 1.6rem;
 
   & span {
@@ -87,38 +91,47 @@ export const StickerArea = styled.div`
 `;
 
 export const MaskingTapeImage = styled(motion.img)`
-  width: 25vmin;
+  width: 26vmin;
   height: auto;
   position: absolute;
-  top: 3%;
-  right: 10%;
+  top: 6%;
+  right: 2%;
+  transform: translate(-2%, -6%) !important;
+  opacity: 0.9;
 `;
 
 export const PosterTitleArea = styled(motion.div)`
-  width: fit-content;
+  width: 100%;
   height: auto;
   display: grid;
   gap: 10px;
   position: absolute;
-  left: 7%;
-  top: 10%;
+  left: 50%;
+  top: 18%;
+  text-align: center;
+  transform: translate(-50%, -18%) !important;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 
   & p {
     line-height: 120%;
     color: var(--white-color-100);
     font-weight: 700;
+    text-shadow: 1px 1px 3px var(--white-color-700);
   }
   & p:nth-child(1) {
-    font-size: 10px;
+    font-size: 18px;
     margin-bottom: -9px;
   }
   & p:nth-child(2) {
-    font-size: 20px;
+    font-size: 22px;
   }
   & p:nth-child(3) {
     font-size: 14px !important;
     line-height: 150% !important;
     font-weight: 500;
+    text-shadow: none;
   }
 `;
 
@@ -130,11 +143,12 @@ export const PosterTitle = styled(motion.p)`
 `;
 
 export const DrawingArea = styled(motion.div)`
-  width: 30vmin;
+  width: 25vmin;
   height: auto;
   position: absolute;
-  right: 44px;
-  bottom: 46px;
+  right: 7%;
+  bottom: 8%;
+  transform: translate(-7%, -7%) !important;
 `;
 
 export const DrawingImage = styled(motion.img)`
@@ -148,9 +162,10 @@ export const DrawingImage = styled(motion.img)`
 export const DrawingImageDesc = styled(motion.p)`
   width: 100%;
   height: auto;
-  margin-top: -10px;
-  text-align: center;
-  font-size: 10px;
+  margin-top: -8px;
+  text-align: right;
+  font-size: 13px;
+  letter-spacing: 0.14rem;
   color: var(--white-color-100);
   font-weight: 600;
   position: relative;

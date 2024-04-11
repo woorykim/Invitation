@@ -1,12 +1,15 @@
 import { AccountNumberProps } from "../../types/ImageTypes";
 
+/**
+ * @title Account Number 객체
+ */
 export const AccountNumber: AccountNumberProps = {
   woory: {
     bride: {
       name: "신부",
       bank: "카카오뱅크",
       accountNumber: `${process.env.REACT_APP_ACCOUNT_NUMBER_BRIDE}`,
-      pay: `https://qr.kakaopay.com/FabTcgSmD`,
+      pay: `${process.env.REACT_APP_ACCOUNT_NUMBER_BRIDE_PAY}`,
     },
     bride_mother: {
       name: "신부 아버지",
@@ -26,7 +29,7 @@ export const AccountNumber: AccountNumberProps = {
       name: "신랑",
       bank: "카카오뱅크",
       accountNumber: `${process.env.REACT_APP_ACCOUNT_NUMBER_BRIDEGROOM}`,
-      pay: `https://qr.kakaopay.com/FabTcgSmD `,
+      pay: `${process.env.REACT_APP_ACCOUNT_NUMBER_BRIDEGROOM_PAY}`,
     },
     bridegroom_mother: {
       name: "신랑 아버지",

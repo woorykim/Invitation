@@ -69,8 +69,13 @@ export const StackedCardImages: { info: InfoProps[]; images: ImagesProps } = {
       },
       image7: {
         name: "wedding07",
-        src: "card_wedding_07.png",
+        src: "card_wedding_07.webp",
         alt: "card_wedding_07",
+      },
+      image8: {
+        name: "wedding08",
+        src: "card_wedding_08.png",
+        alt: "card_wedding_08",
       },
     },
     baby_images: {
@@ -313,7 +318,6 @@ export const StackedCardImages: { info: InfoProps[]; images: ImagesProps } = {
         alt: "아기튜",
       },
     },
-
     together_images_02: {
       image1: {
         name: "together_09",

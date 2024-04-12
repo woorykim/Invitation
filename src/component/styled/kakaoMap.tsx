@@ -24,6 +24,22 @@ export const InformContent = styled.p`
   height: auto;
   font-size: 1.5rem;
   line-height: 1.2;
+  cursor: pointer;
+`;
+
+export const copyButton = styled(motion.button)`
+  border: none;
+  border-radius: 14px;
+  background-color: var(--custom-blue-color);
+  color: var(--white-color-100);
+  font-size: 1.125rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin-left: 2px;
+  cursor: pointer;
 `;
 
 export const MapArea = styled.div`

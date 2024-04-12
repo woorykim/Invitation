@@ -2,6 +2,22 @@ import React from "react";
 import * as calendar from "./styled/calendar";
 
 export const Calendar = () => {
+  /**
+   * 주소 클릭하여 복사
+   * @param string 주소
+   */
+  const onCopy = () => {
+    navigator.clipboard
+      .writeText("서울특별시 마포구 월드컵북로 31")
+      .then(() => {
+        alert("클립보드에 복사되었습니다.");
+        // 복사가 성공했을 때 원하는 동작을 추가할 수 있습니다.
+      })
+      .catch((error) => {
+        console.error("Error copying account number to clipboard:", error);
+      });
+  };
+
   return (
     <calendar.CalendarArea>
       <calendar.CalendarTitle>
@@ -105,7 +121,7 @@ export const Calendar = () => {
                 <td>15</td>
                 <td>16</td>
                 <td>17</td>
-                <td>28</td>
+                <td>18</td>
               </tr>
               <tr>
                 <td>19</td>
@@ -130,7 +146,7 @@ export const Calendar = () => {
             </tbody>
           </calendar.TableArea>
 
-          <calendar.PlaceArea>
+          <calendar.PlaceArea onClick={onCopy}>
             <span>서울 아만티호텔 * 아만티홀</span>
           </calendar.PlaceArea>
           <calendar.DayArea>

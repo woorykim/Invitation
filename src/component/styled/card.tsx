@@ -95,6 +95,7 @@ export const TitleArea = styled.div`
   display: grid;
   gap: 4px;
   text-align: center;
+  position: relative;
 
   & h1,
   & h2,

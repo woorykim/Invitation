@@ -18,12 +18,13 @@ export const AudioPlayer = () => {
 
   // 오디오 초기화
   useEffect(() => {
-    const audioElement = new Audio(AUDIO_URL);
-
-    setAudio(audioElement);
-    return () => {
-      audioElement.pause();
-    };
+    if (!audio) {
+      const audioElement = new Audio(AUDIO_URL);
+      setAudio(audioElement);
+      return () => {
+        audioElement.pause();
+      };
+    }
   }, []);
 
   // 오디오 재생 또는 일시 정지

@@ -32,10 +32,10 @@ export const AccordionItem: React.FC<AccordionItemProps> = (props) => {
   };
 
   /**
-   * 계좌번호 클릭하여 복사
+   *  클릭하여 복사
    * @param string accountNumber
    */
-  const copyAccountNumber = (accountNumber: string) => {
+  const onCopy = (accountNumber: string) => {
     navigator.clipboard
       .writeText(accountNumber)
       .then(() => {
@@ -84,9 +84,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = (props) => {
                 <p>{item.bank} :</p>
                 <p>{item.accountNumber}</p>
               </accordion.AccountBank>
-              <accordion.copyButton
-                onClick={() => copyAccountNumber(item.accountNumber)}
-              >
+              <accordion.copyButton onClick={() => onCopy(item.accountNumber)}>
                 복사
               </accordion.copyButton>
             </accordion.AccountBankArea>

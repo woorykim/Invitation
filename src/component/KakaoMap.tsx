@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
 import * as kakaoMap from "./styled/kakaoMap";
+import { Button } from "./styled/audioPlayer";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
@@ -11,12 +12,29 @@ export const KakaoMap = () => {
     lat: 37.55715071108653,
   };
 
+  /**
+   * 주소 클릭하여 복사
+   * @param string 주소
+   */
+  const onCopy = () => {
+    navigator.clipboard
+      .writeText("서울특별시 마포구 월드컵북로 31")
+      .then(() => {
+        alert("클립보드에 복사되었습니다.");
+        // 복사가 성공했을 때 원하는 동작을 추가할 수 있습니다.
+      })
+      .catch((error) => {
+        console.error("Error copying account number to clipboard:", error);
+      });
+  };
+
   return (
     <kakaoMap.MapWrapper>
       <kakaoMap.InformArea>
         <kakaoMap.InformContent>
           서울특별시 마포구 월드컵북로 31 <br />
           아민티 호텔 * 2F 아만티 홀
+          <kakaoMap.copyButton onClick={onCopy}>복사</kakaoMap.copyButton>
         </kakaoMap.InformContent>
       </kakaoMap.InformArea>
       <kakaoMap.MapArea>

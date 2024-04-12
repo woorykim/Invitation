@@ -127,6 +127,7 @@ export const DayArea = styled.div`
 export const PlaceArea = styled.div`
   position: relative;
   margin-top: 20px;
+  cursor: pointer;
   & span {
     font-size: 1.625rem;
     color: var(--custom-liteBlue-color);
@@ -160,7 +161,7 @@ export const PlaceArea = styled.div`
 `;
 
 export const ContentArea = styled.div`
-  padding: 0 20px;
+  padding: 0 20px 15px;
   box-sizing: border-box;
   max-width: 380px;
   margin: 0 auto;

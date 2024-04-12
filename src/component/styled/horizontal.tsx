@@ -26,6 +26,31 @@ export const HorizontalArea = styled.div`
   }
 `;
 
+// Click 유도 버튼 애니메이션 효과
+const clickBubbleAnimation = keyframes`
+  0% {
+    transform: translateY(10px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(-4px) rotate(5deg);
+  }
+`;
+
+export const ClickBubble = styled.div`
+  width: 95px;
+  height: 95px;
+  z-index: 997;
+  left: 2%;
+  top: 23%;
+  background-image: url(/Invitation/common/images/icon_touch.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: ${clickBubbleAnimation} 0.4s cubic-bezier(0, 0, 0.18, 0.99)
+    infinite alternate;
+  position: absolute;
+`;
+
 export const Button = styled.button`
   position: absolute;
   top: 60%;

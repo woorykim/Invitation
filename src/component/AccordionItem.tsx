@@ -67,7 +67,6 @@ export const AccordionItem: React.FC<AccordionItemProps> = (props) => {
           <accordion.LiArea key={key}>
             <accordion.AccountNameArea>
               <accordion.AccountName>
-                <p>예금주 :</p>
                 <p>{item.name}</p>
               </accordion.AccountName>
               {item.pay && (

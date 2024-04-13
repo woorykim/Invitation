@@ -77,7 +77,7 @@ const ItemVariants: Variants = {
   @title Body Components
 */
 export const Body = () => {
-  const targetDate = new Date("2024-05-25T17:00:00");
+  const targetDate = new Date("2024-05-25 17:00:00");
   const mainRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
@@ -175,8 +175,9 @@ export const Body = () => {
               initial="initial"
               animate="visible"
             >
-              <p>Saturday May 25, 2024 </p>
-              <main.PosterTitle>Memories of the Past</main.PosterTitle>
+              <p>The Adventure Begins </p>
+
+              <main.PosterTitle>Together !</main.PosterTitle>
             </main.PosterTitleArea>
 
             <main.DrawingArea

@@ -109,9 +109,9 @@ export const PosterTitleArea = styled(motion.div)`
   gap: 10px;
   position: absolute;
   left: 50%;
-  top: 14%;
+  top: 17%;
   text-align: center;
-  transform: translate(-50%, -14%) !important;
+  transform: translate(-50%, -50%) !important;
   margin: 0 auto;
   justify-content: center;
   align-items: center;
@@ -121,6 +121,7 @@ export const PosterTitleArea = styled(motion.div)`
     color: var(--white-color-100);
     font-weight: 700;
     text-shadow: 1px 1px 3px var(--white-color-700);
+    width: 100%;
   }
   & p:nth-child(1) {
     font-size: 18px;

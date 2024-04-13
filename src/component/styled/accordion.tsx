@@ -88,8 +88,8 @@ export const AccountBankArea = styled(motion.div)`
 `;
 
 export const AccountBank = styled(motion.div)`
-  display: flex;
-  gap: 3px;
+  display: grid;
+  gap: 7px;
   justify-content: center;
   align-items: center;
   font-size: 1.125rem;

@@ -34,20 +34,21 @@ const CountdownArea = styled.div`
  * @param targetDate
  */
 export const Countdown: React.FC<{ targetDate: Date }> = ({ targetDate }) => {
-  const [daysLeft, setDaysLeft] = useState<number>(0);
+  const [daysLeft, setDaysLeft] = useState<string>("");
 
   useEffect(() => {
-    const today = new Date();
-    const difference = targetDate.getTime() - today.getTime();
-    const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
-    setDaysLeft(days);
-
     const interval = setInterval(() => {
       const today = new Date();
       const difference = targetDate.getTime() - today.getTime();
-      const days = Math.ceil(difference / (1000 * 60 * 60 * 24));
-      setDaysLeft(days);
-    }, 1000);
+      const days = Math.floor(difference / (24 * 60 * 60 * 1000));
+      const countdownString = `${days}`;
+
+      setDaysLeft(countdownString);
+
+      if (days < 1 && days > 0) {
+        setDaysLeft("DAY");
+      }
+    }, 50);
 
     return () => clearInterval(interval);
   }, [targetDate]);
@@ -56,7 +57,7 @@ export const Countdown: React.FC<{ targetDate: Date }> = ({ targetDate }) => {
     <CountdownArea key={daysLeft}>
       <h1>💍</h1>
       <p>
-        D-day <span>{daysLeft}</span>
+        D - <span>{daysLeft}</span>
       </p>
     </CountdownArea>
   );

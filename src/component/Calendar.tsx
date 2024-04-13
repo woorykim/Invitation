@@ -29,15 +29,13 @@ export const Calendar = () => {
               <span>P</span>
               <span>P</span>
               <span>Y</span>&nbsp;
-              <span>T</span>
-              <span>H</span>
-              <span>E</span>
+              <span>W</span>
               <span>E</span>
               <span>D</span>
               <span>D</span>
               <span>I</span>
               <span>N</span>
-              <span>G</span>
+              <span>G</span>&nbsp;
               <span>D</span>
               <span>A</span>
               <span>Y</span>

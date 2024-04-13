@@ -7,7 +7,7 @@ import { ImagesProps, InfoProps } from "../../types/ImageTypes";
 export const StackedCardImages: { info: InfoProps[]; images: ImagesProps } = {
   info: [
     {
-      title: "🤵🏻‍♂️👰🏻 Wedding days",
+      title: "🤵🏻‍♂️Love's Renewal 👰🏻",
       chip: "새로운 시작",
     },
     {

@@ -76,6 +76,10 @@ export const StackedCards: React.FC<StackedCardsProps> = (props) => {
           ))}
         </card.CardWrap>
       </card.wrapperStyle>
+
+      {/* <card.ButtonArea>
+        <card.Chip>더 보러가기</card.Chip>
+      </card.ButtonArea> */}
     </card.article>
   );
 };

@@ -176,8 +176,7 @@ export const Body = () => {
               animate="visible"
             >
               <p>The Adventure Begins </p>
-
-              <main.PosterTitle>Together !</main.PosterTitle>
+              <main.PosterTitle>Together!</main.PosterTitle>
             </main.PosterTitleArea>
 
             <main.DrawingArea

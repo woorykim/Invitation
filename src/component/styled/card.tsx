@@ -84,6 +84,23 @@ export const ChipArea = styled.div`
     inset 3px 3px 5px rgba(94, 104, 121, 0.288);
 `;
 
+// 더보기 버트
+export const ButtonArea = styled.div`
+  z-index: 997;
+  width: fit-content;
+  height: auto;
+  padding: 10px;
+  background: var(--white-color-200);
+  border-radius: 25px;
+  margin: 0 auto;
+  box-shadow: -12px 10px 14px #ffffff73, 3px 3px 5px rgba(94, 104, 121, 0.288);
+  &:focus,
+  &:active {
+    box-shadow: inset -12px 10px 14px #ffffff73,
+      inset 3px 3px 5px rgba(94, 104, 121, 0.288);
+  }
+`;
+
 export const Chip = styled.p`
   font-size: 1.4rem;
   font-weight: 500;

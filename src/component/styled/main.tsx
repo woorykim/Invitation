@@ -124,7 +124,7 @@ export const PosterTitleArea = styled(motion.div)`
     width: 100%;
   }
   & p:nth-child(1) {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: -9px;
   }
   & p:nth-child(2) {

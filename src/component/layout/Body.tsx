@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import scrollbar from "smooth-scrollbar";
 import { AnimatePresence, Variants, useMotionValue } from "framer-motion";
 
@@ -79,34 +85,16 @@ const ItemVariants: Variants = {
 export const Body = () => {
   const targetDate = new Date("2024-05-25 17:00:00");
   const mainRef = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState(0);
-  const [width, setWidth] = useState(0);
+  const [size, setSize] = useState({ height: 0, width: 0 });
   const [visibleIndex, setVisibleIndex] = useState(0);
   const [direction, setDirection] = useState<"next" | "prev">("next");
-  const [xValue, setXValue] = useState(0);
   const totalArticles = StackedCardImages.info.length; // 전체 아티클 수
-  const x = useMotionValue(xValue);
+  const element = document.querySelector<HTMLElement>("#smooth-scroll");
 
-  // 이미지 다음
-  const showNextSlide = () => {
-    setDirection("next");
-    setVisibleIndex((prevIndex) =>
-      prevIndex === totalArticles - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  // 이미지 이전
-  const showPrevSlide = () => {
-    setDirection("prev");
-    setVisibleIndex((prevIndex) =>
-      prevIndex === 0 ? totalArticles - 1 : prevIndex - 1
-    );
-  };
-
-  // 스와이프
+  /** * 스와이프 */
   const slideVariants = {
     hidden: (direction: "next" | "prev") => ({
-      x: direction === "next" ? width : -width,
+      x: direction === "next" ? size.width : -size.width,
       opacity: 0,
       scale: 0.8,
       transition: { duration: 0.3 },
@@ -119,22 +107,50 @@ export const Body = () => {
     },
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (mainRef.current) {
-        const { offsetHeight, offsetWidth } = mainRef.current;
-        setHeight(offsetHeight);
-        setWidth(offsetWidth);
-      }
-    };
-
-    handleResize(); // 초기 실행
-    window.addEventListener("resize", handleResize); // 창 크기 변경 시 실행
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+  /** * Main 가로, 세로 값 체크 함수*/
+  const handleResize = useCallback(() => {
+    if (mainRef.current) {
+      const { offsetHeight, offsetWidth } = mainRef.current;
+      setSize({ height: offsetHeight, width: offsetWidth });
+    }
   }, []);
+
+  // Main 가로, 세로 업데이트
+  useEffect(() => {
+    if (element !== null) {
+      scrollbar.init(element);
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [handleResize]);
+
+  /** * Next */
+  const showNextSlide = useCallback(() => {
+    setDirection("next");
+    setVisibleIndex((prevIndex) =>
+      prevIndex === totalArticles - 1 ? 0 : prevIndex + 1
+    );
+  }, [totalArticles]);
+
+  /** * Prev */
+  const showPrevSlide = useCallback(() => {
+    setDirection("prev");
+    setVisibleIndex((prevIndex) =>
+      prevIndex === 0 ? totalArticles - 1 : prevIndex - 1
+    );
+  }, [totalArticles]);
+
+  // 렌더링이 발생하기 전 동기적으로 실행
+  useLayoutEffect(() => {
+    if (visibleIndex === 0 && direction === "prev") {
+      setVisibleIndex(totalArticles - 1);
+    } else if (visibleIndex === totalArticles - 1 && direction === "next") {
+      setVisibleIndex(0);
+    }
+  }, [direction, totalArticles, visibleIndex]);
 
   return (
     <body.Wrapper
@@ -157,7 +173,7 @@ export const Body = () => {
             animate="visible"
           >
             <main.PosterImage
-              src={imagePath + "card_wedding_03.webp"}
+              src={imagePath + "wedding_bg_02.webp"}
               alt="wedding_woory_eunsa"
             />
           </main.PosterArea>
@@ -186,7 +202,7 @@ export const Body = () => {
               animate="visible"
             >
               <main.DrawingImageDesc>
-                우리 & 은사 <br /> 달이 & 이트
+                은사 & 우리 <br /> 달이 & 이트
               </main.DrawingImageDesc>
               <main.DrawingImage src={imagePath + "main_drawing.png"} alt="" />
             </main.DrawingArea>
@@ -196,7 +212,7 @@ export const Body = () => {
 
       <body.PositionArea
         style={{
-          top: `calc(${height}px - 180px)`,
+          top: `calc(${size.height}px - 180px)`,
         }}
       >
         {/* 인사말  */}
@@ -250,25 +266,6 @@ export const Body = () => {
                       right: window.innerWidth,
                     }}
                     dragElastic={false}
-                    onDrag={(event, info) => {
-                      setXValue(info.point.x);
-                      x.set(info.offset.x);
-                    }}
-                    onDragEnd={(event, info) => {
-                      if (
-                        info.offset.x < 0 &&
-                        Math.abs(info.offset.x) >= window.innerWidth / 4
-                      ) {
-                        showNextSlide();
-                      } else if (
-                        info.offset.x > 0 &&
-                        info.offset.x >= window.innerWidth / 4
-                      ) {
-                        showPrevSlide();
-                      }
-                      setXValue(info.point.x);
-                      x.set(info.point.x);
-                    }}
                   >
                     <StackedCards
                       title={info.title}

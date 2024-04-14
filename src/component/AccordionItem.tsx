@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import * as accordion from "./styled/accordion";
 
 // 절대경로 설정

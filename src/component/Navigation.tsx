@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { isIOS, isAndroid, isBrowser, isTablet } from "react-device-detect";
 import * as navigation from "./styled/navigation";
-import { isAppInstalled, showNavigationCheck } from "./util/NavigationCheck";
+import { isAppInstalled } from "./util/NavigationCheck";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";

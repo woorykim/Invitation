@@ -1,6 +1,5 @@
 import React from "react";
 import * as modal from "./styled/modal";
-import { KakaoMap } from "./KakaoMap";
 
 /**
  *  Modal Component Type

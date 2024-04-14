@@ -103,7 +103,7 @@ export const Navigation = () => {
         whileTap={{ scale: 0.9 }}
         style={{ cursor: "pointer", textDecoration: "none" }}
       >
-        <img src={imagePath + "icon_navi_kakao.svg"} alt="Kakao_Navigation" />
+        <img src={imagePath + "icon_navi_kakao.png"} alt="Kakao_Navigation" />
         <p>카카오맵</p>
       </navigation.navigationButton>
 
@@ -113,7 +113,7 @@ export const Navigation = () => {
         whileTap={{ scale: 0.9 }}
         style={{ cursor: "pointer", textDecoration: "none" }}
       >
-        <img src={imagePath + "icon_navi_tmap.svg"} alt="Tmap_Navigation" />
+        <img src={imagePath + "icon_navi_tmap.png"} alt="Tmap_Navigation" />
         <p>티맵</p>
       </navigation.navigationButton>
 
@@ -123,7 +123,7 @@ export const Navigation = () => {
         whileTap={{ scale: 0.9 }}
         style={{ cursor: "pointer", textDecoration: "none" }}
       >
-        <img src={imagePath + "icon_navi_naver.svg"} alt="naver_Navigation" />
+        <img src={imagePath + "icon_navi_naver.png"} alt="naver_Navigation" />
         <p>네이버지도</p>
       </navigation.navigationButton>
     </navigation.navigationArea>

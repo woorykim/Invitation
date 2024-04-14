@@ -4,7 +4,7 @@ export const CalendarArea = styled.div`
   width: 100%;
   min-width: 250px;
   height: 100%;
-  padding: 0 25px 40px;
+  padding: 0 22px 40px;
 `;
 
 export const CalendarTitle = styled.div`
@@ -57,7 +57,7 @@ export const Neumorphism = styled.div`
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    background-image: url(/Invitation/common/images/card_wedding_01.webp);
+    background-image: url(/Invitation/common/images/wedding_bg_01.webp);
     background-size: 110%;
     background-position: 50% 70%;
     background-repeat: no-repeat;
@@ -126,7 +126,8 @@ export const DayArea = styled.div`
 
 export const PlaceArea = styled.div`
   position: relative;
-  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--custom-frenchBlue-color);
   cursor: pointer;
   & span {
     font-size: 1.625rem;

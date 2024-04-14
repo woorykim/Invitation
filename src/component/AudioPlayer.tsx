@@ -40,21 +40,20 @@ export const AudioPlayer = () => {
   };
 
   return (
-    <audioPlayer.AudioPlayerWrapper>
+    <audioPlayer.AudioPlayerWrapper onClick={toggleAudio}>
       {audio && <audio autoPlay src={AUDIO_URL} />}
-      <audioPlayer.Button onClick={toggleAudio}>
-        <img
-          src={
-            imagePath +
-            `${
-              audioState === AudioState.Playing
-                ? "icon_music_white"
-                : "icon_no_music_white"
-            }.svg`
-          }
-          alt="Audio"
-        />
-      </audioPlayer.Button>
+
+      <img
+        src={
+          imagePath +
+          `${
+            audioState === AudioState.Playing
+              ? "icon_music_white"
+              : "icon_no_music_white"
+          }.svg`
+        }
+        alt="Audio"
+      />
     </audioPlayer.AudioPlayerWrapper>
   );
 };

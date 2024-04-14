@@ -38,7 +38,7 @@ export const copyButton = styled(motion.button)`
   align-items: center;
   text-align: center;
   justify-content: center;
-  margin-left: 2px;
+  margin-left: 4px;
   cursor: pointer;
 `;
 
@@ -85,13 +85,14 @@ export const ItemArea = styled.div`
 `;
 
 export const Round = styled.div`
-  width: 95px;
-  padding: 8px 12px;
+  width: 88px;
   border-radius: 25px;
   background-color: var(--custom-liteBlue-color);
-  padding: 8px 12px;
-  font-size: 1.3rem;
+  padding: 7px 0px;
+  font-size: 1.5rem;
   font-weight: 600;
+  color: var(--white-color-100);
+  letter-spacing: 2px;
 `;
 
 // 오시는 길 컬러

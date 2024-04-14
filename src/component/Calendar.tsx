@@ -69,11 +69,6 @@ export const Calendar = () => {
       <calendar.DayInnerArea>
         <calendar.PictureArea>
           <calendar.Neumorphism></calendar.Neumorphism>
-          {/* <calendar.Picture
-            style={{
-              backgroundImage: `url(${imagePath + "card_wedding_01.png"})`,
-            }}
-          ></calendar.Picture> */}
         </calendar.PictureArea>
 
         <calendar.ContentArea>
@@ -149,9 +144,8 @@ export const Calendar = () => {
           </calendar.PlaceArea>
           <calendar.DayArea>
             <p>
-              2024년 5월 25일 (토)
-              <br />
-              오후 5시
+              2024년 5월 25일 <br />
+              토요일 오후 5시
             </p>
           </calendar.DayArea>
         </calendar.ContentArea>

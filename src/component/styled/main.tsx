@@ -109,7 +109,7 @@ export const PosterTitleArea = styled(motion.div)`
   gap: 10px;
   position: absolute;
   left: 50%;
-  top: 17%;
+  top: 16%;
   text-align: center;
   transform: translate(-50%, -50%) !important;
   margin: 0 auto;
@@ -124,11 +124,11 @@ export const PosterTitleArea = styled(motion.div)`
     width: 100%;
   }
   & p:nth-child(1) {
-    font-size: 20px;
+    font-size: 23px;
     margin-bottom: -9px;
   }
   & p:nth-child(2) {
-    font-size: 22px;
+    font-size: 24px;
   }
   & p:nth-child(3) {
     font-size: 14px !important;
@@ -150,7 +150,7 @@ export const DrawingArea = styled(motion.div)`
   height: auto;
   position: absolute;
   right: 7%;
-  bottom: 18%;
+  bottom: 17%;
   transform: translate(-7%, -18%) !important;
 `;
 

@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Map, MapMarker, CustomOverlayMap } from "react-kakao-maps-sdk";
 import * as kakaoMap from "./styled/kakaoMap";
-import { Button } from "./styled/audioPlayer";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
@@ -85,7 +84,7 @@ export const KakaoMap = () => {
 
       <kakaoMap.OnToWayArea>
         <kakaoMap.ItemArea>
-          <kakaoMap.Round> 지하철 이용시</kakaoMap.Round>
+          <kakaoMap.Round> 지하철</kakaoMap.Round>
           <kakaoMap.Describe>
             <ul>
               <li>
@@ -105,7 +104,7 @@ export const KakaoMap = () => {
           </kakaoMap.Describe>
         </kakaoMap.ItemArea>
         <kakaoMap.ItemArea>
-          <kakaoMap.Round> 버스 이용시</kakaoMap.Round>
+          <kakaoMap.Round> 버스</kakaoMap.Round>
           <kakaoMap.Describe>
             <ul>
               <li>
@@ -122,7 +121,7 @@ export const KakaoMap = () => {
         </kakaoMap.ItemArea>
 
         <kakaoMap.ItemArea>
-          <kakaoMap.Round> 주차 안내</kakaoMap.Round>
+          <kakaoMap.Round>주차</kakaoMap.Round>
           <kakaoMap.Describe>
             <ul>
               <li>아만티호텔서울 주차장 이용 : 250여대 가능</li>

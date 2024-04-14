@@ -44,7 +44,7 @@ export const RightArea = styled.div`
 `;
 
 export const AudioArea = styled(motion.div)<{ $scroll: number }>`
-  padding: 9px 5px;
+  padding: 10px;
   width: fit-content;
   height: 100%;
   background-color: var(--custom-blue-color);

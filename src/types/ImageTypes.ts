@@ -21,7 +21,8 @@ export interface ImagesProps {
   cats_images: ImageProps;
   together_images_01: ImageProps;
   together_images_02: ImageProps;
-  wedding_images: ImageProps;
+  wedding_images_01: ImageProps;
+  wedding_images_02: ImageProps;
 }
 
 /**

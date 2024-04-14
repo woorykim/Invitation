@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import scrollbar from "smooth-scrollbar";
-import { AnimatePresence, Variants, useMotionValue } from "framer-motion";
+import { AnimatePresence, Variants } from "framer-motion";
 
 import { StackedCardImages } from "../../assets/images/PostImages";
 import * as main from "../styled/main";
@@ -16,7 +16,6 @@ import * as salutation from "../styled/salutation";
 import * as horizontal from "../styled/horizontal";
 import * as guide from "../styled/guide";
 import * as binoculars from "../styled/binoculars";
-import * as flipCard from "../styled/flipCard";
 import { StackedCards } from "../StackedCards";
 import { BlinkText } from "../BlinkText";
 import { Calendar } from "../Calendar";
@@ -24,6 +23,7 @@ import { KakaoMap } from "../KakaoMap";
 import { Navigation } from "../Navigation";
 import { Countdown } from "../Countdown";
 import { Heart } from "../Heart";
+import { FlipCard } from "../FlipCard";
 
 // 절대경로 설정
 const imagePath = process.env.PUBLIC_URL + "/common/images/";
@@ -33,7 +33,7 @@ if (element instanceof HTMLElement) {
   scrollbar.init(element);
 }
 
-// 섹션
+/** * Section Wrapping Animation */
 const WrapperVariants: Variants = {
   hidden: {
     opacity: 0,
@@ -46,7 +46,7 @@ const WrapperVariants: Variants = {
     },
   },
 };
-
+/** * Section Animation  */
 const sectionVariants: Variants = {
   initial: { opacity: 0, y: 20 },
   whileInView: {
@@ -56,7 +56,7 @@ const sectionVariants: Variants = {
   },
 };
 
-// 메인
+/** * Main animation */
 const PosterAreaVariants: Variants = {
   hidden: {
     opacity: 0,
@@ -70,6 +70,7 @@ const PosterAreaVariants: Variants = {
   },
 };
 
+/** * Main item animation  */
 const ItemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i) => ({
@@ -187,19 +188,20 @@ export const Body = () => {
 
             <main.PosterTitleArea
               variants={ItemVariants}
-              custom={1}
-              initial="initial"
-              animate="visible"
+              initial={{ y: -100 }}
+              animate={{ y: 10 }}
+              transition={{ duration: 0.5, type: "spring" }}
             >
               <p>The Adventure Begins </p>
               <main.PosterTitle>Together!</main.PosterTitle>
             </main.PosterTitleArea>
 
             <main.DrawingArea
-              variants={ItemVariants}
-              custom={2}
-              initial="initial"
-              animate="visible"
+              initial={{ x: -100, y: -100 }}
+              animate={{ x: 10, y: 10 }}
+              transition={{ duration: 0.5, type: "spring" }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
               <main.DrawingImageDesc>
                 은사 & 우리 <br /> 달이 & 이트
@@ -232,7 +234,7 @@ export const Body = () => {
           <Calendar />
         </body.Section>
 
-        {/* 가로 스크롤  */}
+        {/* 사진들  */}
         <body.Section {...sectionVariants}>
           <horizontal.Button
             type="button"
@@ -297,6 +299,10 @@ export const Body = () => {
         <body.Section {...sectionVariants}>
           <Heart />
         </body.Section>
+        {/* 
+        <body.Section {...sectionVariants}>
+          <FlipCard imagePath={imagePath} />
+        </body.Section> */}
       </body.PositionArea>
     </body.Wrapper>
   );

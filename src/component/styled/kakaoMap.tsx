@@ -85,7 +85,7 @@ export const ItemArea = styled.div`
 `;
 
 export const Round = styled.div`
-  width: 88px;
+  width: 70px;
   border-radius: 25px;
   background-color: var(--custom-liteBlue-color);
   padding: 7px 0px;

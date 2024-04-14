@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 import * as card from "./styled/card";
 
-const CARD_OFFSET = 8;
+const CARD_OFFSET = 12;
+const VISIBLE_CARDS = 6; // 화면에 보이는 카드의 개수
 const SCALE_FACTOR = 0.06; // 절대경로 설정
 
 /**
@@ -60,12 +61,16 @@ export const StackedCards: React.FC<StackedCardsProps> = (props) => {
               style={{
                 cursor: index === 0 ? "grab" : "auto",
                 zIndex: imageKeys.length - index,
+                visibility: index < VISIBLE_CARDS ? "visible" : "hidden", // 화면에 보이는 카드 개수만큼만 보이도록 설정
+                filter: index === 0 ? "blur(0px)" : "blur(1px)",
+                transition: "filter 0.3s ease-in-out 0s",
               }}
               animate={{
                 top: index * -CARD_OFFSET,
                 scale: 1 - index * SCALE_FACTOR,
                 rotate: index === 0 ? (clickRight ? -45 : 0) : 0, // 맨 앞 카드만 회전
               }}
+              transition={{ duration: 0.5, type: "spring" }}
               onClick={handleClick}
             >
               <card.Image

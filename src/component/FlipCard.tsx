@@ -4,11 +4,14 @@ import * as horizontal from "./styled/horizontal";
 
 interface IFlipProps {
   imagePath: string;
+  isCollapsed: boolean;
 }
 
 export const FlipCard: React.FC<IFlipProps> = (props) => {
-  const { imagePath } = props;
+  const { imagePath, isCollapsed } = props;
   const [isFlipped, setIsFlipped] = useState(false);
+
+  console.log(isCollapsed);
 
   /** * Toggle 함수 콜백 */
   const toggleFlip = useCallback(() => {
@@ -16,15 +19,17 @@ export const FlipCard: React.FC<IFlipProps> = (props) => {
   }, [isFlipped]);
 
   return (
-    <horizontal.article>
+    <horizontal.article
+      style={{
+        height: isCollapsed ? "100vh" : 0,
+        transition: "height 0.35s ease-in-out",
+      }}
+    >
       <horizontal.TitleWrapper>
         <horizontal.TitleArea>
           <h4>ABOUT Character </h4>
           <h1>{isFlipped ? "Lee EunSa" : "Kim Woory"}</h1>
         </horizontal.TitleArea>
-        <horizontal.ChipArea>
-          <horizontal.Chip>Package</horizontal.Chip>
-        </horizontal.ChipArea>
       </horizontal.TitleWrapper>
 
       <flipCard.FlipCardArea onClick={toggleFlip}>

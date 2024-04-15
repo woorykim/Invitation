@@ -15,7 +15,6 @@ import * as blink from "../styled/blink";
 import * as salutation from "../styled/salutation";
 import * as horizontal from "../styled/horizontal";
 import * as guide from "../styled/guide";
-import * as binoculars from "../styled/binoculars";
 import { StackedCards } from "../StackedCards";
 import { BlinkText } from "../BlinkText";
 import { Calendar } from "../Calendar";
@@ -89,7 +88,8 @@ export const Body = () => {
   const [size, setSize] = useState({ height: 0, width: 0 });
   const [visibleIndex, setVisibleIndex] = useState(0);
   const [direction, setDirection] = useState<"next" | "prev">("next");
-  const totalArticles = StackedCardImages.info.length; // 전체 아티클 수
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const totalArticles = StackedCardImages.info.length + 1; // 전체 아티클 수
   const element = document.querySelector<HTMLElement>("#smooth-scroll");
 
   /** * 스와이프 */
@@ -144,14 +144,18 @@ export const Body = () => {
     );
   }, [totalArticles]);
 
-  // 렌더링이 발생하기 전 동기적으로 실행
-  useLayoutEffect(() => {
-    if (visibleIndex === 0 && direction === "prev") {
+  // prev | next 업데이트
+  useEffect(() => {
+    if (direction === "prev" && visibleIndex === 0) {
       setVisibleIndex(totalArticles - 1);
-    } else if (visibleIndex === totalArticles - 1 && direction === "next") {
+    } else if (direction === "next" && visibleIndex === totalArticles - 1) {
       setVisibleIndex(0);
     }
   }, [direction, totalArticles, visibleIndex]);
+
+  const showCollapsed = useCallback(() => {
+    setIsCollapsed(!isCollapsed);
+  }, [isCollapsed]);
 
   return (
     <body.Wrapper
@@ -299,9 +303,10 @@ export const Body = () => {
         <body.Section {...sectionVariants}>
           <Heart />
         </body.Section>
-        {/* 
-        <body.Section {...sectionVariants}>
-          <FlipCard imagePath={imagePath} />
+
+        {/* <body.Section {...sectionVariants}>
+          <body.plusContent onClick={showCollapsed}>+ 인사말</body.plusContent>
+          <FlipCard imagePath={imagePath} isCollapsed={isCollapsed} />
         </body.Section> */}
       </body.PositionArea>
     </body.Wrapper>

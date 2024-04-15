@@ -87,6 +87,12 @@ export const article = styled(motion.div)`
   overflow: hidden;
   padding-bottom: 10px;
   position: relative;
+  &:last-child {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
   &::before {
     content: "";
     position: absolute;

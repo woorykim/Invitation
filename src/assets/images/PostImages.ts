@@ -61,11 +61,11 @@ export const StackedCardImages: { info: InfoProps[]; images: ImagesProps } = {
         src: "card_wedding_04.webp",
         alt: "card_wedding_04",
       },
-      image5: {
-        name: "wedding_05",
-        src: "card_wedding_05.webp",
-        alt: "card_wedding_05",
-      },
+      // image5: {
+      //   name: "wedding_05",
+      //   src: "card_wedding_05.webp",
+      //   alt: "card_wedding_05",
+      // },
       image6: {
         name: "wedding_06",
         src: "card_wedding_06.webp",

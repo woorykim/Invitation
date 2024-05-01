@@ -21,7 +21,7 @@ const textVariants = (index: number): Variants => ({
   visible: {
     opacity: 1,
     transition: {
-      delay: Math.random() * index * 0.1,
+      delay: Math.random() * index * 0.2,
       duration: Math.random() * index * 0.2,
       repeat: Math.random() * index,
       repeatType: "reverse",

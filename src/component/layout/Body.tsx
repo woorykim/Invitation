@@ -145,6 +145,7 @@ export const Body = () => {
   }, [totalArticles]);
 
   // prev | next 업데이트
+  // TODO: 수정
   useEffect(() => {
     if (direction === "prev" && visibleIndex === 0) {
       setVisibleIndex(totalArticles - 1);

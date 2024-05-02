@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import * as card from "./styled/card";
 
-const CARD_OFFSET = 12;
-const VISIBLE_CARDS = 6; // 화면에 보이는 카드의 개수
+const CARD_OFFSET = 16;
+const VISIBLE_CARDS = 4; // 화면에 보이는 카드의 개수
 const SCALE_FACTOR = 0.06; // 절대경로 설정
 
 /**
@@ -62,7 +62,7 @@ export const StackedCards: React.FC<StackedCardsProps> = (props) => {
                 cursor: index === 0 ? "grab" : "auto",
                 zIndex: imageKeys.length - index,
                 visibility: index < VISIBLE_CARDS ? "visible" : "hidden", // 화면에 보이는 카드 개수만큼만 보이도록 설정
-                filter: index === 0 ? "blur(0px)" : "blur(1px)",
+                filter: index === 0 ? "blur(0px)" : "blur(0.6px)",
                 transition: "filter 0.3s ease-in-out 0s",
               }}
               animate={{

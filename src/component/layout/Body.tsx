@@ -86,10 +86,9 @@ export const Body = () => {
   const targetDate = new Date("2024-05-25 17:00:00");
   const mainRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ height: 0, width: 0 });
-  const [visibleIndex, setVisibleIndex] = useState(0);
   const [direction, setDirection] = useState<"next" | "prev">("next");
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const totalArticles = StackedCardImages.info.length + 1; // 전체 아티클 수
+  const totalArticles = StackedCardImages.info.length;
+  const [visibleIndex, setVisibleIndex] = useState(totalArticles > 0 ? 0 : -1); // 초기값 설정
   const element = document.querySelector<HTMLElement>("#smooth-scroll");
 
   /** * 스와이프 */
@@ -128,14 +127,6 @@ export const Body = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, [handleResize]);
 
-  /** * Next */
-  const showNextSlide = useCallback(() => {
-    setDirection("next");
-    setVisibleIndex((prevIndex) =>
-      prevIndex === totalArticles - 1 ? 0 : prevIndex + 1
-    );
-  }, [totalArticles]);
-
   /** * Prev */
   const showPrevSlide = useCallback(() => {
     setDirection("prev");
@@ -144,19 +135,13 @@ export const Body = () => {
     );
   }, [totalArticles]);
 
-  // prev | next 업데이트
-  // TODO: 수정
-  useEffect(() => {
-    if (direction === "prev" && visibleIndex === 0) {
-      setVisibleIndex(totalArticles - 1);
-    } else if (direction === "next" && visibleIndex === totalArticles - 1) {
-      setVisibleIndex(0);
-    }
-  }, [direction, totalArticles, visibleIndex]);
-
-  const showCollapsed = useCallback(() => {
-    setIsCollapsed(!isCollapsed);
-  }, [isCollapsed]);
+  /** * Next */
+  const showNextSlide = useCallback(() => {
+    setDirection("next");
+    setVisibleIndex((prevIndex) =>
+      prevIndex === totalArticles - 1 ? 0 : prevIndex + 1
+    );
+  }, [totalArticles]);
 
   return (
     <body.Wrapper
@@ -186,10 +171,10 @@ export const Body = () => {
 
           <main.StickerArea>
             <main.NameArea>{/* <span>*</span> Moon & Ite */}</main.NameArea>
-            <main.MaskingTapeImage
+            {/* <main.MaskingTapeImage
               src={imagePath + "main_maskingTape.png"}
               alt=""
-            />
+            /> */}
 
             <main.PosterTitleArea
               variants={ItemVariants}
@@ -234,75 +219,86 @@ export const Body = () => {
         </body.Section>
 
         {/* 달력 */}
-        <body.Section {...sectionVariants}>
-          <Countdown targetDate={targetDate} />
-          <Calendar />
+        <body.Section>
+          <body.OpacityBox {...sectionVariants}>
+            <Countdown targetDate={targetDate} />
+            <Calendar />
+          </body.OpacityBox>
         </body.Section>
 
         {/* 사진들  */}
-        <body.Section {...sectionVariants}>
-          <horizontal.Button
-            type="button"
-            className="prev"
-            onClick={showPrevSlide}
-            disabled={visibleIndex === 0}
-          ></horizontal.Button>
-          <horizontal.Button
-            type="button"
-            className="next"
-            onClick={showNextSlide}
-            disabled={visibleIndex === totalArticles - 1}
-          ></horizontal.Button>
+        <body.Section>
+          <body.OpacityBox {...sectionVariants}>
+            <horizontal.Button
+              type="button"
+              className="prev"
+              onClick={showPrevSlide}
+              // disabled={visibleIndex === 0}
+            ></horizontal.Button>
+            <horizontal.Button
+              type="button"
+              className="next"
+              onClick={showNextSlide}
+              // disabled={visibleIndex === totalArticles - 1}
+            ></horizontal.Button>
 
-          <horizontal.HorizontalArea ref={mainRef}>
-            <horizontal.ClickBubble />
-            <AnimatePresence custom={direction}>
-              {StackedCardImages.info.map((info, index) =>
-                index === visibleIndex ? (
-                  <horizontal.article
-                    key={index}
-                    variants={slideVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    custom={direction}
-                    transition={{ bounceStiffness: 300, bounceDamping: 50 }}
-                    dragTransition={{ bounceStiffness: 300, bounceDamping: 50 }}
-                    dragConstraints={{
-                      left: -window.innerWidth,
-                      right: window.innerWidth,
-                    }}
-                    dragElastic={false}
-                  >
-                    <StackedCards
-                      title={info.title}
-                      chip={info.chip}
-                      src={process.env.PUBLIC_URL + "/common/images/"}
-                      images={Object.values(StackedCardImages.images)[index]} // 이미지 배열 사용
-                    />
-                  </horizontal.article>
-                ) : null
-              )}
-            </AnimatePresence>
-          </horizontal.HorizontalArea>
+            <horizontal.HorizontalArea ref={mainRef}>
+              <horizontal.ClickBubble />
+              <AnimatePresence custom={direction}>
+                {StackedCardImages.info.map((info, index) =>
+                  index === visibleIndex ? (
+                    <horizontal.article
+                      key={index}
+                      variants={slideVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      custom={direction}
+                      transition={{ bounceStiffness: 300, bounceDamping: 50 }}
+                      dragTransition={{
+                        bounceStiffness: 300,
+                        bounceDamping: 50,
+                      }}
+                      dragConstraints={{
+                        left: -window.innerWidth,
+                        right: window.innerWidth,
+                      }}
+                      dragElastic={false}
+                    >
+                      <StackedCards
+                        title={info.title}
+                        chip={info.chip}
+                        src={process.env.PUBLIC_URL + "/common/images/"}
+                        images={Object.values(StackedCardImages.images)[index]} // 이미지 배열 사용
+                      />
+                    </horizontal.article>
+                  ) : null
+                )}
+              </AnimatePresence>
+            </horizontal.HorizontalArea>
+          </body.OpacityBox>
         </body.Section>
 
         {/* 오시는 길 */}
-        <body.Section {...sectionVariants} id="scrollable-element">
-          <guide.GuideArea>
-            <guide.Title>
-              <p>오시는길 🚶🏻‍♀️</p>
-            </guide.Title>
-            <guide.ContentArea>
-              <KakaoMap />
-              <Navigation />
-            </guide.ContentArea>
-          </guide.GuideArea>
+        <body.Section id="scrollable-element">
+          <body.OpacityBox {...sectionVariants}>
+            <guide.GuideArea>
+              <guide.Title>
+                <p>오시는길 🚶🏻‍♀️</p>
+              </guide.Title>
+              <guide.ContentArea>
+                <KakaoMap />
+                <Navigation />
+              </guide.ContentArea>
+            </guide.GuideArea>
+          </body.OpacityBox>
         </body.Section>
 
         {/* 입금 */}
-        <body.Section {...sectionVariants}>
-          <Heart />
+        <body.Section>
+          <body.OpacityBox {...sectionVariants}>
+            <Heart />
+          </body.OpacityBox>
         </body.Section>
 
         {/* <body.Section {...sectionVariants}>

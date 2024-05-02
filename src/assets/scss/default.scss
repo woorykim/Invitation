@@ -226,4 +226,14 @@ a {
 img {
   /*keyword values*/
   -webkit-touch-callout: none; //화면 하단에서 메뉴가 뜨지 않음
+  // 오른쪽 클릭 금지
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  /* 드래그 방지 */
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+  user-drag: none;
 }

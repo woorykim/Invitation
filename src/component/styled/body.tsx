@@ -23,16 +23,19 @@ export const Wrapper = styled(motion.div)`
 export const Section = styled(motion.section)`
   width: 100%;
   height: auto;
-  opacity: 0;
-  margin-top: 0px;
   padding-bottom: 16px;
-  transition: opacity 0.2s ease, margin-top 0.4s ease-in-out;
   position: relative;
   background-color: var(--white-color-100);
 
   &:last-child {
     position: relative;
   }
+`;
+
+export const OpacityBox = styled(motion.div)`
+  margin-top: 0px;
+  opacity: 0;
+  transition: opacity 0.2s ease, margin-top 0.4s ease-in-out;
 `;
 
 export const plusContent = styled(motion.div)`

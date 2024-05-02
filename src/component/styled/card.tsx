@@ -133,7 +133,7 @@ export const TitleArea = styled.div`
 `;
 
 export const wrapperStyle = styled(motion.div)`
-  margin: 4.4% 0;
+  margin: 5.4% 0;
   width: 100%;
   height: 100%;
   position: relative;

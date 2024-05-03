@@ -171,6 +171,8 @@ html {
 // TODO:앱 하단 공백 영역처리
 body {
   width: 100%;
+  touch-action: pan-y;
+  -ms-content-zoom-chaining: none;
   min-height: 100vh;
   min-height: -webkit-fill-available;
 
@@ -236,4 +238,5 @@ img {
   -moz-user-drag: none;
   -ms-user-drag: none;
   user-drag: none;
+  touch-action: inherit;
 }

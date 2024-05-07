@@ -6,7 +6,7 @@ import { AccountNumberProps } from "../../types/ImageTypes";
 export const AccountNumber: AccountNumberProps = {
   woory: {
     bride: {
-      name: "신부",
+      name: "김우리",
       bank: "카카오뱅크",
       accountNumber: `${process.env.REACT_APP_ACCOUNT_NUMBER_BRIDE}`,
       pay: `${process.env.REACT_APP_ACCOUNT_NUMBER_BRIDE_PAY}`,
@@ -26,7 +26,7 @@ export const AccountNumber: AccountNumberProps = {
   },
   eunsa: {
     bridegroom: {
-      name: "신랑",
+      name: "이은사",
       bank: "카카오뱅크",
       accountNumber: `${process.env.REACT_APP_ACCOUNT_NUMBER_BRIDEGROOM}`,
       pay: `${process.env.REACT_APP_ACCOUNT_NUMBER_BRIDEGROOM_PAY}`,

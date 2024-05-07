@@ -61,7 +61,7 @@ export const HeadBar: React.FC<IHeadBarProps> = (props) => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          <header.Map src={imagePath + "header_placeMarker.svg"} />
+          <header.Map src={imagePath + "header_placeMarker.png"} />
         </header.MapArea>
       </header.RightArea>
     </header.HeaderWrapper>

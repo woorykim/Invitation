@@ -150,7 +150,7 @@ export const DrawingArea = styled(motion.div)`
   height: auto;
   position: absolute;
   right: 7%;
-  bottom: 17%;
+  bottom: 22%;
   transform: translate(-7%, -18%) !important;
 `;
 

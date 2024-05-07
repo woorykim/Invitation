@@ -40,14 +40,8 @@ export const AudioPlayer = () => {
     }
   };
 
-  // 노래 재생 중일 때만 버튼을 클릭하여 중복 재생을 방지합니다.
-  const handleClick = () => {
-    if (audioState === AudioState.Playing) return;
-    toggleAudio();
-  };
-
   return (
-    <audioPlayer.AudioPlayerWrapper onClick={handleClick}>
+    <audioPlayer.AudioPlayerWrapper onClick={toggleAudio}>
       {audio && <audio autoPlay src={AUDIO_URL} />}
 
       <img
@@ -57,7 +51,7 @@ export const AudioPlayer = () => {
             audioState === AudioState.Playing
               ? "icon_music_white"
               : "icon_no_music_white"
-          }.svg`
+          }.png`
         }
         alt="Audio"
       />

@@ -48,8 +48,8 @@ export const Neumorphism = styled.div`
 
   &::before {
     content: "";
-    width: calc(100% - 15%);
-    height: calc(100% - 15%);
+    width: calc(100% - 16%);
+    height: calc(100% - 17%);
     box-shadow: inset -3px -3px 7px #ffffff73,
       inset 3px 3px 5px rgba(94, 104, 121, 0.288);
     border-radius: 30px;

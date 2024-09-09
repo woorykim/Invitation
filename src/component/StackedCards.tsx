@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import * as card from "./styled/card";
+import * as horizontal from "./styled/horizontal";
 
 const CARD_OFFSET = 16;
 const VISIBLE_CARDS = 4; // 화면에 보이는 카드의 개수
@@ -55,6 +56,7 @@ export const StackedCards: React.FC<StackedCardsProps> = (props) => {
 
       <card.wrapperStyle>
         <card.CardWrap>
+          <horizontal.ClickBubble />
           {cards.map((imageName, index) => (
             <card.CardItem
               key={imageName}

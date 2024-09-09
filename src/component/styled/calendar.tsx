@@ -17,9 +17,9 @@ export const CalendarTitle = styled.div`
 `;
 
 export const DayInnerArea = styled.div`
-  width: 100%;
-  min-width: 250px;
-  height: auto;
+  width: 80vmin;
+  /* min-width: 250px; */
+  height: 150vmin;
   margin: 0 auto;
   border-radius: 43px;
   background: linear-gradient(145deg, #eeeeee, #ffffff);
@@ -29,7 +29,7 @@ export const DayInnerArea = styled.div`
 
 export const PictureArea = styled.div`
   width: 100%;
-  height: 300px;
+  height: 60%;
   padding: 20px;
   border-radius: 14px;
   position: relative;

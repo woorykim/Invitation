@@ -40,8 +40,8 @@ export const ClickBubble = styled.div`
   width: 95px;
   height: 95px;
   z-index: 997;
-  left: 2%;
-  top: 23%;
+  left: -11%;
+  top: -1%;
   background-image: url(/Invitation/common/images/icon_touch.png);
   background-size: contain;
   background-position: center;

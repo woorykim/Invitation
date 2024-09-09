@@ -243,7 +243,6 @@ export const Body = () => {
             ></horizontal.Button>
 
             <horizontal.HorizontalArea ref={mainRef}>
-              <horizontal.ClickBubble />
               <AnimatePresence custom={direction}>
                 {StackedCardImages.info.map((info, index) =>
                   index === visibleIndex ? (
